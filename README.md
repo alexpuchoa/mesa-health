@@ -34,6 +34,7 @@ This repo provides the code and configuration needed to (1) render benchmark pro
 | `scripts/scenario_generation/build_veto_sidecar.py` | Veto assignment generation |
 
 These scripts produced the frozen benchmark artifact. They are provided for methodological transparency. Users of the benchmark do not need to run them.
+Their design-time inputs live under `design/`, not under `config/`.
 
 ---
 
@@ -112,7 +113,6 @@ mesa-health/
 │   ├── task_directives.yaml       # Aggregation-rule directive wording
 │   ├── variant_map.yaml           # Full test-variant definitions (21 variants)
 │   ├── test_set_variant_map.yaml  # Pool-to-variant assignment
-│   ├── test_set_design.yaml       # Pool size and balance parameters
 │   └── rendering/                 # Per-variant prompt template and block configs
 ├── data/
 │   ├── scenarios_master.json      # ← download from HuggingFace
@@ -125,7 +125,8 @@ mesa-health/
 │   ├── _benchmark_lib/            # Shared library modules
 │   └── scenario_generation/       # Transparency-only design scripts
 ├── design/
-│   └── README.md                  # Design transparency notes
+│   ├── README.md                  # Design transparency notes
+│   └── test_set_design.yaml       # MILP pool-size and balancing specification
 ├── tests/
 │   └── test_public_bundle.py      # Smoke tests
 ├── LICENSE                        # MIT

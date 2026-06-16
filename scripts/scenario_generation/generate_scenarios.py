@@ -16,7 +16,12 @@ if str(SCRIPTS_ROOT) not in sys.path:
 
 from _benchmark_lib.io_utils import write_csv, write_json, write_yaml
 from _benchmark_lib.metrics import scenario_properties
-from _benchmark_lib.scenario_generation import build_scenarios, load_archetypes, load_dimensions, load_options
+from scenario_generation._scenario_generation_lib import (
+    build_scenarios,
+    load_archetypes,
+    load_dimensions,
+    load_options,
+)
 
 
 BUNDLE_ROOT = SCRIPT_DIR.parents[1]

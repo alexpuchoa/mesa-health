@@ -131,7 +131,7 @@ def main() -> int:
     """CLI entry point for deriving the benchmark core and secondary pools."""
     parser = argparse.ArgumentParser(description="Select the benchmark core and derived pools from scenario features.")
     parser.add_argument("--scenario-features-csv", required=True)
-    parser.add_argument("--design-yaml", default=str(BUNDLE_ROOT / "config" / "test_set_design.yaml"))
+    parser.add_argument("--design-yaml", default=str(BUNDLE_ROOT / "design" / "test_set_design.yaml"))
     parser.add_argument("--output-dir", default=str(BUNDLE_ROOT / "results" / "selection_sets"))
     args = parser.parse_args()
 
