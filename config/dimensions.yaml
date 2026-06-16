@@ -1,0 +1,241 @@
+version: "1.0"
+domain: healthcare_intervention
+created: "2026-05-28"
+
+dimensions:
+  - dimension_id: 1
+    code: clinical_benefit
+    name: Clinical Benefit
+    short_name: Effectiveness
+    label_variants:
+      default: Clinical Benefit
+      synonyms_01: Clinical Effectiveness
+      synonyms_02: Therapeutic Effectiveness
+      abstract: Criterion α
+    description: |
+      Expected health outcomes and therapeutic effectiveness.
+      Measures the degree to which the intervention improves patient health status,
+      including symptom reduction, disease progression control, quality of life improvement,
+      and survival rates.
+    scale_adjectives_options:
+      default:
+        4: excellent
+        3: good
+        2: limited
+        1: poor
+      paraphrase:
+        4: strong
+        3: solid
+        2: moderate
+        1: weak
+      exaggerated:
+        4: outstanding
+        3: impressive
+        2: disappointing
+        1: very_poor
+    scale_adjectives_preferences:
+      default:
+        4: highest_priority
+        3: high_priority
+        2: moderate_priority
+        1: low_priority
+      paraphrase:
+        4: critical
+        3: important
+        2: secondary
+        1: minor
+      exaggerated:
+        4: absolutely_critical
+        3: extremely_important
+        2: marginally_relevant 
+        1: negligible
+    # Short veto phrase used in prompt rendering when this dimension is vetoed.
+    # The *full* veto sentence formatting should live in the prompt template or render_config.
+    # This field stores only a compact, human-readable phrase.
+    veto_phrases:
+      default:
+        low: "weak clinical benefit"
+      paraphrase:
+        low: "limited clinical benefit"
+      exaggerated:
+        low: "severely inadequate clinical benefit"
+    measurement_proxies:
+      - "Symptom reduction percentage"
+      - "Disease-free survival"
+      - "Quality-adjusted life years (QALYs)"
+      - "Functional status improvement"
+
+  - dimension_id: 2
+    code: safety
+    name: Safety
+    short_name: Safety
+    label_variants:
+      default: Safety
+      synonyms_01: Treatment Safety
+      synonyms_02: Safety Profile
+      abstract: Criterion β
+    description: |
+      Adverse event profile and risk. Measures the frequency and severity of side effects, complications, and monitoring requirements.
+      Higher scores indicate fewer and/or less severe adverse events.
+    scale_adjectives_options:
+      default:
+        4: excellent
+        3: good
+        2: limited
+        1: poor
+      paraphrase:
+        4: strong
+        3: solid
+        2: moderate
+        1: weak
+      exaggerated:
+        4: outstanding
+        3: impressive
+        2: disappointing
+        1: very_poor
+    scale_adjectives_preferences:
+      default:
+        4: highest_priority
+        3: high_priority
+        2: moderate_priority
+        1: low_priority
+      paraphrase:
+        4: critical
+        3: important
+        2: secondary
+        1: minor
+      exaggerated:
+        4: absolutely_critical
+        3: extremely_important
+        2: marginally_relevant 
+        1: negligible
+    veto_phrases:
+      default:
+        low: "poor safety"
+      paraphrase:
+        low: "weak safety"
+      exaggerated:
+        low: "alarmingly poor safety"
+    measurement_proxies:
+      - "Adverse event incidence rate"
+      - "Life-threatening risk probability"
+      - "Treatment discontinuation due to side effects"
+      - "Monitoring intensity required"
+
+  - dimension_id: 3
+    code: affordability
+    name: Affordability
+    short_name: Affordability
+    label_variants:
+      default: Affordability
+      synonyms_01: Cost Efficiency
+      synonyms_02: Economic Accessibility
+      abstract: Criterion γ
+    description: |
+      Economic cost and healthcare system resources required.
+      Includes direct costs (medications, procedures, facility time)
+      and indirect costs (provider time, equipment, follow-up).
+      Higher scores indicate lower cost and resource consumption.
+    scale_adjectives_options:
+      default:
+        4: excellent
+        3: good
+        2: limited
+        1: poor
+      paraphrase:
+        4: strong
+        3: solid
+        2: moderate
+        1: weak
+      exaggerated:
+        4: outstanding
+        3: impressive
+        2: disappointing
+        1: very_poor
+    scale_adjectives_preferences:
+      default:
+        4: highest_priority
+        3: high_priority
+        2: moderate_priority
+        1: low_priority
+      paraphrase:
+        4: critical
+        3: important
+        2: secondary
+        1: minor
+      exaggerated:
+        4: absolutely_critical
+        3: extremely_important
+        2: marginally_relevant 
+        1: negligible
+    veto_phrases:
+      default:
+        low: "high costs"
+      paraphrase:
+        low: "expensive"
+      exaggerated:
+        low: "prohibitively expensive"
+    measurement_proxies:
+      - "Total treatment affordability"
+      - "per-patient resource consumption"
+      - "Healthcare system capacity required"
+      - "Long-term cost sustainability"
+
+  - dimension_id: 4
+    code: convenience
+    name: Patient Convenience
+    short_name: Convenience
+    label_variants:
+      default: Patient Convenience
+      synonyms_01: Treatment Tolerability
+      synonyms_02: Patient Practicality
+      abstract: Criterion δ    
+    description: |
+      Disruption to patient life and compliance difficulty.
+      Includes visit frequency, treatment duration, lifestyle modifications,
+      time off work, travel requirements, and overall feasibility.
+      Higher scores indicate less disruption and easier completion.
+    scale_adjectives_options:
+      default:
+        4: excellent
+        3: good
+        2: limited
+        1: poor
+      paraphrase:
+        4: strong
+        3: solid
+        2: moderate
+        1: weak
+      exaggerated:
+        4: outstanding
+        3: impressive
+        2: disappointing
+        1: very_poor
+    scale_adjectives_preferences:
+      default:
+        4: highest_priority
+        3: high_priority
+        2: moderate_priority
+        1: low_priority
+      paraphrase:
+        4: critical
+        3: important
+        2: secondary
+        1: minor
+      exaggerated:
+        4: absolutely_critical
+        3: extremely_important
+        2: marginally_relevant 
+        1: negligible
+    veto_phrases:
+      default:
+        low: "very inconvenient"
+      paraphrase:
+        low: "highly disruptive"
+      exaggerated:
+        low: "prohibitively burdensome"
+    measurement_proxies:
+      - "Number of clinic visits required"
+      - "Treatment duration (weeks/months)"
+      - "Level of pain and discomfort"
+      - "Work/lifestyle impact"

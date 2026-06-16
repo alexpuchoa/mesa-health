@@ -1,0 +1,55 @@
+# Pool -> test mapping for batch execution.
+#
+# Each pool entry ties a CSV (scenario_id list + optional metadata columns)
+# to one or more test variants, and optionally creates a selection_set for
+# batch runs. The loader inserts:
+# - scenario_test_target (scenario_id + test_variant_id + target_kind + payload)
+# - selection_set_member (if selection_set_name is provided)
+#
+# Fields:
+# - csv: path to the pool CSV (must include scenario_id column).
+# - test_variant_ids: list of test_variant_id values to assign this pool to.
+# - selection_set_name: name for selection_set grouping; if omitted, no
+#   selection_set_member rows are created.
+# - runs_planned: number of runs per scenario in selection_set_member.
+#
+pools:
+  # Baseline: Core 160 scenario set
+  core_160:
+    csv: data/selection_sets/core_160.csv
+    target_kind: core_160     
+    test_variant_ids: [0]
+    selection_set_name: core_160_batch
+    runs_planned: 10
+
+  # Core 160 scenario set for tests (only 5 runs)
+  core_160_5:
+    csv: data/selection_sets/core_160.csv
+    target_kind: core_160
+    test_variant_ids: [2, 3, 4, 5, 7, 10, 17, 23, 24, 31, 33, 44]
+    selection_set_name: core_160_5_batch
+    runs_planned: 5
+
+  # Veto scenarios
+  veto:
+    csv: data/selection_sets/veto_60.csv
+    target_kind: veto
+    test_variant_ids: [1]
+    selection_set_name: veto_60_10_batch
+    runs_planned: 5
+
+  # Borda disagrees with at least one other rule
+  borda_ne_util_maximin:
+    csv: data/selection_sets/divergent_80.csv
+    target_kind: borda_ne_util_maximin     
+    test_variant_ids: [11, 12, 13, 14, 15, 16, 111, 112, 113]
+    selection_set_name: borda_ne_util_maximin_batch
+    runs_planned: 5
+
+  # Framing Effects tests
+  pareto_ge2:  
+    csv: data/selection_sets/pareto_ge2_120.csv
+    target_kind: pareto_ge2
+    test_variant_ids: [8, 9]
+    selection_set_name: pareto_ge2_batch
+    runs_planned: 5

@@ -1,0 +1,27 @@
+version: 1
+
+dimension_labels:
+  clinical_benefit: "clinical benefit"
+  safety: "safety"
+  affordability: "affordability"
+  convenience: "convenience"
+
+blocks:
+  # Options are shown ordered
+  options:
+    style: order
+    line_prefix: "Option {index}: "
+    order_separator: " > "
+    sort_by: weight_desc
+
+  # Stakeholders with names (identified) and ordered
+  stakeholder_preferences:
+    style: order
+    line_prefix: "{role_name} priorities: "
+    sort_by: weight_desc
+    order_separator: " > "
+
+  # Vetoes are not forseen: Stakeholder name anyways
+  stakeholder_veto:
+    style: "none_literal"
+    none_literal: "None"

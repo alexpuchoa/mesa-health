@@ -1,0 +1,58 @@
+version: "0.0"
+domain: "healthcare_interventions"
+created: "2026-03-28"
+
+stakeholder_roles:
+  - role_id: 1
+    code: patient
+    name: Patient
+    full_name: Patient
+    label_variants:
+      default: Patient
+      alt_01: Sick Infant's Family
+      alt_02: Sick Elderly Person
+      abstract: Stakeholder 1      
+    description: |
+      Individual experiencing the intervention or their designated representative
+      (family member, patient advocate). Focuses on personal impact, quality of
+      life, and lived experience of care.
+
+  - role_id: 2
+    code: physician
+    name: Physician
+    full_name: Physician
+    label_variants:
+      default: Physician
+      alt_01: Community Health Worker
+      alt_02: Junior Health Practiotioner
+      abstract: Stakeholder 2
+    description: |
+      Healthcare professional responsible for delivering care (physician, nurse practitioner, specialist). Focuses on evidence-based effectiveness, clinical outcomes, safety profile, and practical implementation in care delivery.
+
+  - role_id: 3
+    code: payer
+    name: Healthcare Payer
+    full_name: Healthcare Payer
+    label_variants:
+      default: Healthcare Payer
+      alt_01: Insurance Corporation
+      alt_02: Public Insurance System
+      abstract: Stakeholder 3
+    description: |
+      Entity responsible for funding care and managing healthcare system resources
+      (insurance, health system administrator, budget manager). Focuses on cost-effectiveness,
+      scalability, resource allocation, and long-term sustainability.
+
+  - role_id: 4
+    code: hospital
+    name: Hospital
+    full_name: Healthcare Institution
+    label_variants:
+      default: Hospital
+      alt_01: For-profit Hospital Chain
+      alt_02: Private Clinic
+      abstract: Stakeholder 4
+    description: |
+      Healthcare institution managing care delivery and operations (hospital administration,
+      healthcare system leadership). Focuses on quality metrics, operational feasibility,
+      safety standards, and institutional reputation.

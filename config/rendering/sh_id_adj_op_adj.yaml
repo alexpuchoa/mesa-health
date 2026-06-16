@@ -1,0 +1,35 @@
+version: 1
+
+dimension_labels:
+  clinical_benefit: "clinical benefit"
+  safety: "safety"
+  affordability: "affordability"
+  convenience: "convenience"
+
+blocks:
+  # Options use adjectives beside dimensions
+  options:
+    style: weights
+    line_prefix: "Option {index} has "
+    sort_by: weight_desc
+    include_scale_adjectives: true
+    adjective_format: "{adjective} {label}"
+    item_separator: ", "
+    item_format: "{label}"
+    weight_decimals: 3   # ignored by item_format, but ok to keep
+
+  # Stakeholders IDs, adjectives beside dimensions
+  stakeholder_preferences:
+    style: weights
+    line_prefix: "Stakeholder {index} priorities: "
+    sort_by: weight_desc
+    include_scale_adjectives: true
+    adjective_format: "{label} ({adjective})"
+    item_separator: ", "
+    item_format: "{label}"
+    weight_decimals: 3
+
+  # Vetoes are not forseen
+  stakeholder_veto:
+    style: "none_literal"
+    none_literal: "None"

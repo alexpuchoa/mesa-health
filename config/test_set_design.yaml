@@ -1,0 +1,25 @@
+core:
+  size: 160
+  conflict_bins:
+    low: 53
+    medium: 54
+    high: 53
+  manipulation_min: 15
+
+pools:
+  divergent:
+    size: 80
+    pin_csv: null
+  pareto_ge2:
+    size: 120
+    pin_csv: null
+
+  all_scenarios:
+    size: 256
+    pin_csv: null
+
+veto:
+  conflict_bins:
+    low: 20
+    medium: 20
+    high: 20

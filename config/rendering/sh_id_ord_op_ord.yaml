@@ -1,0 +1,30 @@
+version: 1
+
+# Optional override of dimension labels in prompts (by dimension code).
+dimension_labels:
+  clinical_benefit: "Clinical benefit"
+  safety: "Safety"
+  affordability: "Affordability"
+  convenience: "Patient convenience"
+
+blocks:
+  # Options ordered only (baseline)
+  options:
+    # Supported: order | weights
+    style: order
+    line_prefix: "Option {index}: "
+    order_separator: " > "
+    sort_by: weight_desc
+
+  # Stakeholders anonymous, ordered only (baseline)
+  stakeholder_preferences:
+    # Supported: order | weights
+    style: order
+    line_prefix: "Stakeholder {index} priorities: "
+    order_separator: " > "
+    sort_by: weight_desc
+
+  # Vetoes NOT forseen!
+  stakeholder_veto:
+    style: "none_literal"
+    none_literal: "None"

@@ -1,0 +1,703 @@
+version: "1.0"
+
+tests:
+  - code: borda
+    name: borda
+    description: "Task Borda; Option ordered; SH ordered."
+
+  - code: borda_veto
+    name: borda veto
+    description: "Task Borda; Option ordered; SH ordered; with Veto"
+
+  - code: format_invariance_adj
+    name: format invariance adjectives
+    description: "Task Borda; Option adjectives; SH adjectives."
+
+  - code: maximin
+    name: maximin task
+    description: "Task Utilitarian; Option ordered; SH ordered."
+    
+  - code: utilitarian
+    name: utilitarian task
+    description: "Task Utilitarian; Option ordered; SH ordered."
+    
+  - code: format_invariance_sent
+    name: format invariance sentences
+    description: "Task Borda; Option sentences; SH sentences."
+    
+  - code: paraphrasing_synonym
+    name: paraphrasing and synonym
+    description: "Task Borda; Option & Stakeholder ADJ paraphrased + synonym."
+
+  - code: paraphrasing_synonym_01
+    test_code: paraphrasing_synonym_01
+    name: "Paraphrasing Adjective + Label Synonym 01"
+
+  - code: paraphrasing_adj
+    name: paraphrasing adjectives
+    description: "Task Borda; Option & Stakeholder ADJ paraphrased ONLY."
+  
+  - code: exaggeration
+    name: exaggeration
+    description: "Task Borda; Option ADJ exaggerated; SH ordered."
+
+  - code: permulation_options_1
+    name: permulation options 1
+    description: "Task Borda; Option ordered permuted #1; SH ordered."
+    
+  - code: permulation_options_2
+    name: permulation options 2
+    description: "Task Borda; Option ordered permuted #2; SH ordered."
+
+  - code: permulation_options_3
+    name: permulation options 3
+    description: "Task Borda; Option ordered permuted #3; SH ordered."
+
+  - code: abstract_denominations
+    name: abstract denominations
+    description: "Task Borda; Option ordered; SH ordered; Abstract denominations."
+    
+  - code: abstract_permutation_options_1
+    name: abstract permutation options 1
+    description: "Task Borda; Option ordered permuted #1; SH ordered; Abstract denominations."
+    
+  - code: abstract_permutation_options_2
+    name: abstract permutation options 2
+    description: "Task Borda; Option ordered permuted #2; SH ordered; Abstract denominations."
+
+  - code: abstract_permutation_options_3
+    name: abstract permutation options 3
+    description: "Task Borda; Option ordered permuted #3; SH ordered; Abstract denominations."
+
+  - code: permulation_stakeholders_1
+    name: permulation stakeholders 1
+    description: "Task Borda; Option ordered permuted #1; SH ordered."
+
+  - code: permulation_stakeholders_2
+    name: permulation stakeholders 2
+    description: "Task Borda; Option ordered permuted #2; SH ordered."
+
+  - code: permulation_stakeholders_3
+    name: permulation stakeholders 3
+    description: "Task Borda; Option ordered permuted #3; SH ordered."
+
+  - code: emphasis_pos
+    name: positive_emphasis_options
+    description: "Task Borda; Option sentence POSITIVE; SH adjectives."
+
+  - code: emphasis_neg
+    name: negative_emphasis_options
+    description: "Task Borda; Option sentence NEGATIVE; SH adjectives."
+
+  - code: stakeholder_roles
+    name: stakeholder_with_roles
+    description: "Task Borda; Option ordered; SH names, ordered."
+
+  - code: stakeholder_roles_alt_01
+    name: stakeholder_with_roles_alt_01
+    description: "Task Borda; Option ordered; SH alternate names 01, ordered."
+
+  - code: stakeholder_roles_alt_02
+    name: stakeholder_with_roles_alt_02
+    description: "Task Borda; Option ordered; SH alternate names 02, ordered."    
+
+#==========================================================================
+
+defaults:
+  prompt_stakeholder_order:
+    - position: 1
+      role_id: 1
+    - position: 2
+      role_id: 2
+    - position: 3
+      role_id: 3
+    - position: 4
+      role_id: 4
+  prompt_option_order:
+    - position: 1
+      option_id: 1
+    - position: 2
+      option_id: 2
+    - position: 3
+      option_id: 3
+    - position: 4
+      option_id: 4
+
+variants:
+  - test_variant_id: 0
+    test_code: borda
+    name: "Baseline"
+    description: "Borda: Task Borda; Stakeholder anonymous, dimensions ordered; Option dimensions ordered."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_ord_op_ord"
+    render_config_yaml: "rendering/sh_id_ord_op_ord.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+  - test_variant_id: 1
+    test_code: borda_veto
+    name: "Baseline with Veto"
+    description: "Borda w/ Veto: Task Borda; Stakeholder anonymous, dimensions ordered; Option dimensions ordered, with Veto."
+    prompt_yaml: "rendering/prompt_v2_veto.yaml"
+    render_config_id: "sh_id_ord_op_ord_veto"
+    render_config_yaml: "rendering/sh_id_ord_op_ord_veto.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+  - test_variant_id: 2
+    test_code: format_invariance_adj
+    name: "Format Invariance (adjectives)"
+    description: "Borda task directive; Stakeholders anonymous; Dimensions as adjectives on both, stakeholders and options."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_adj_op_adj"
+    render_config_yaml: "rendering/sh_id_adj_op_adj.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+  - test_variant_id: 3
+    test_code: maximin
+    name: "Maximin Task Directive"
+    description: "Maximin (equity) task directive; Stakeholders anonymous; Dimensions ordered on both, stakeholders and options."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_ord_op_ord"
+    render_config_yaml: "rendering/sh_id_ord_op_ord.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "maximin"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+  - test_variant_id: 4
+    test_code: utilitarian
+    name: "Utilitarian Task Directive"
+    description: "Utilitarian task directive; Stakeholders anonymous; Dimensions ordered on both, stakeholders and options."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_ord_op_ord"
+    render_config_yaml: "rendering/sh_id_ord_op_ord.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "utilitarian"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+  - test_variant_id: 5
+    test_code: format_invariance_sent
+    name: "Format Invariance (sentences)"
+    description: "Borda task directive; Stakeholders anonymous; Dimensions as sentences on both, stakeholders and options."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_sent_op_sent"
+    render_config_yaml: "rendering/sh_id_sent_op_sent.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+    
+  - test_variant_id: 7
+    test_code: paraphrasing_synonym
+    name: "Paraphrasing Adjective + Label Synonym"
+    description: "Borda task directive; Stakeholders IDs, Stakeholders AND Options w/ adjectives paraphrasing and labels synonyms."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_adj_op_adj"
+    render_config_yaml: "rendering/sh_id_adj_op_adj.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "paraphrase"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "synonyms_02"
+
+  - test_variant_id: 8
+    test_code: emphasis_pos
+    name: "Positive Emphasis Options"
+    description: "Borda task directive; Stakeholders anonymous; Dimensions adjectives; Options as sentences with POSITIVE framing."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_ord_op_sent_pos"
+    render_config_yaml: "rendering/sh_id_ord_op_sent_pos.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+  - test_variant_id: 9
+    test_code: emphasis_neg
+    name: "Negative Emphasis Options"
+    description: "Borda task directive; Stakeholders anonymous; Dimensions adjectives; Options as sentences with NEGATIVE framing."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_ord_op_sent_neg"
+    render_config_yaml: "rendering/sh_id_ord_op_sent_neg.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+  - test_variant_id: 10
+    test_code: stakeholder_roles
+    name: "Stakeholder with Roles"
+    description: "Borda task directive; Stakeholders show roles; Dimensions ordered; Options ordered."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_nm_ord_op_ord"
+    render_config_yaml: "rendering/sh_nm_ord_op_ord.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+  - test_variant_id: 11
+    test_code: permulation_options_1
+    name: "Permutation Options #1"
+    description: "Borda task directive; Stakeholders anonymous; Dimensions ordered on both, stakeholders and options, option permutation #1."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_ord_op_ord"
+    render_config_yaml: "rendering/sh_id_ord_op_ord.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+    overrides:
+    # Override option presentation order for this variant.
+    # Baseline      O1, O2, O3, O4
+    # Permutation 1 O3, O1, O4, O2
+    # Permutation 2 O4, O2, O1, O3
+    # Permutation 3 O2, O4, O3, O1
+      prompt_option_order:
+        - position: 1
+          option_id: 3
+        - position: 2
+          option_id: 1
+        - position: 3
+          option_id: 4
+        - position: 4
+          option_id: 2
+
+  - test_variant_id: 12
+    test_code: permulation_options_2
+    name: "Permutation Options #2"
+    description: "Borda task directive; Stakeholders anonymous; Dimensions ordered on both, stakeholders and options, option permutation #2."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_ord_op_ord"
+    render_config_yaml: "rendering/sh_id_ord_op_ord.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+    overrides:
+    # Override option presentation order for this variant.
+    # Baseline      O1, O2, O3, O4
+    # Permutation 1 O3, O1, O4, O2
+    # Permutation 2 O4, O2, O1, O3
+    # Permutation 3 O2, O4, O3, O1
+      prompt_option_order:
+        - position: 1
+          option_id: 4
+        - position: 2
+          option_id: 2
+        - position: 3
+          option_id: 1
+        - position: 4
+          option_id: 3
+
+  - test_variant_id: 13
+    test_code: permulation_options_3
+    name: "Permutation Options #3"
+    description: "Borda task directive; Stakeholders anonymous; Dimensions ordered on both, stakeholders and options, option permutation #3."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_ord_op_ord"
+    render_config_yaml: "rendering/sh_id_ord_op_ord.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+    overrides:
+    # Override option presentation order for this variant.
+    # Baseline      O1, O2, O3, O4
+    # Permutation 1 O3, O1, O4, O2
+    # Permutation 2 O4, O2, O1, O3
+    # Permutation 3 O2, O4, O3, O1
+      prompt_option_order:
+        - position: 1
+          option_id: 2
+        - position: 2
+          option_id: 4
+        - position: 3
+          option_id: 3
+        - position: 4
+          option_id: 1
+
+  - test_variant_id: 14
+    test_code: permulation_stakeholders_1
+    name: "Permutation Stakeholders #1"
+    description: "Borda task directive; Stakeholders anonymous; Dimensions ordered on both, stakeholders and options, stakeholders permutation #1."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_ord_op_ord"
+    render_config_yaml: "rendering/sh_id_ord_op_ord.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+    overrides:
+    # Override stakeholder presentation order for this variant.
+    # Baseline      S1, S2, S3, S4
+    # Permutation 1 S3, S1, S4, S2
+    # Permutation 2 S4, S2, S1, S3
+    # Permutation 3 S2, S4, S3, S1
+      prompt_stakeholder_order:
+        - position: 1
+          role_id: 3
+        - position: 2
+          role_id: 1
+        - position: 3
+          role_id: 4
+        - position: 4
+          role_id: 2
+
+  - test_variant_id: 15
+    test_code: permulation_stakeholders_2
+    name: "Permutation Stakeholders #2"
+    description: "Borda task directive; Stakeholders anonymous; Dimensions ordered on both, stakeholders and options, stakeholders permutation #2."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_ord_op_ord"
+    render_config_yaml: "rendering/sh_id_ord_op_ord.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+    overrides:
+    # Override stakeholder presentation order for this variant.
+    # Baseline      S1, S2, S3, S4
+    # Permutation 1 S3, S1, S4, S2
+    # Permutation 2 S4, S2, S1, S3
+    # Permutation 3 S2, S4, S3, S1
+      prompt_stakeholder_order:
+        - position: 1
+          role_id: 4
+        - position: 2
+          role_id: 2
+        - position: 3
+          role_id: 1
+        - position: 4
+          role_id: 3
+
+  - test_variant_id: 16
+    test_code: permulation_stakeholders_3
+    name: "Permutation Stakeholders #3"
+    description: "Borda task directive; Stakeholders anonymous; Dimensions ordered on both, stakeholders and options, stakeholders permutation #3."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_ord_op_ord"
+    render_config_yaml: "rendering/sh_id_ord_op_ord.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+    overrides:
+    # Override stakeholder presentation order for this variant.
+    # Baseline      S1, S2, S3, S4
+    # Permutation 1 S3, S1, S4, S2
+    # Permutation 2 S4, S2, S1, S3
+    # Permutation 3 S2, S4, S3, S1
+      prompt_stakeholder_order:
+        - position: 1
+          role_id: 2
+        - position: 2
+          role_id: 4
+        - position: 3
+          role_id: 3
+        - position: 4
+          role_id: 1
+
+  - test_variant_id: 17
+    test_code: exaggeration
+    name: "Exaggerated Adjectives"
+    description: "Borda task directive; Stakeholders anonymous; Stakeholders IDs, Options w/ exaggerated adjectives."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_ord_op_adj"
+    render_config_yaml: "rendering/sh_id_ord_op_adj.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "exaggerated"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+  - test_variant_id: 23
+    test_code: paraphrasing_adj
+    name: "Paraphrasing Adjective ONLY"
+    description: "Borda task directive; Stakeholders IDs, Stakeholders AND Options w/ adjectives paraphrasing ONLY."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_adj_op_adj"
+    render_config_yaml: "rendering/sh_id_adj_op_adj.yaml"
+    
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "paraphrase"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+  - test_variant_id: 24
+    test_code: stakeholder_roles_alt_01
+    name: "Stakeholder with Alternative Roles 01"
+    description: "Borda task directive; Stakeholders show alternative roles 01; Dimensions ordered; Options ordered."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_nm_ord_op_ord"
+    render_config_yaml: "rendering/sh_nm_ord_op_ord.yaml"
+
+    # Uses alternative stakeholder names 01
+    stakeholder_role_variant_code: "alt_01"
+    clone_from_test_variant_id: 0
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+  - test_variant_id: 31
+    test_code: stakeholder_roles_alt_02
+    name: "Stakeholder with Alternative Roles 02"
+    description: "Borda task directive; Stakeholders show alternative roles 01; Dimensions ordered; Options ordered."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_nm_ord_op_ord"
+    render_config_yaml: "rendering/sh_nm_ord_op_ord.yaml"
+
+    # Uses alternative stakeholder names 02
+    stakeholder_role_variant_code: "alt_02"
+    clone_from_test_variant_id: 0
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "default"
+
+  - test_variant_id: 33
+    test_code: paraphrasing_synonym_01
+    name: "Paraphrasing Adjective + Label Synonym 01"
+    description: "Borda task directive; Stakeholders IDs, Stakeholders AND Options w/ adjectives paraphrasing and labels synonyms."
+    prompt_yaml: "rendering/prompt_v2.yaml"
+    render_config_id: "sh_id_adj_op_adj"
+    render_config_yaml: "rendering/sh_id_adj_op_adj.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "paraphrase"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "synonyms_01"
+
+  - test_variant_id: 44
+    test_code: abstract_denominations
+    name: "Abstract Denominations"
+    description: "Borda task directive; Stakeholders anonymous; Dimensions as abstracts conceprts for stakeholders and options."
+    prompt_yaml: "rendering/prompt_v2_neutral_context.yaml"
+    render_config_id: "sh_id_ord_op_ord"
+    render_config_yaml: "rendering/sh_id_ord_op_ord.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "abstract"
+
+  - test_variant_id: 111
+    test_code: abstract_permutation_options_1
+    name: "Abstract Permutation Options #1"
+    description: "Borda task directive; Stakeholders anonymous; Dimensions ordered on both, stakeholders and options, option permutation #1, abstract denominations."
+    prompt_yaml: "rendering/prompt_v2_neutral_context.yaml"
+    render_config_id: "sh_id_ord_op_ord"
+    render_config_yaml: "rendering/sh_id_ord_op_ord.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "abstract"
+
+    overrides:
+    # Override option presentation order for this variant.
+    # Baseline      O1, O2, O3, O4
+    # Permutation 1 O3, O1, O4, O2
+    # Permutation 2 O4, O2, O1, O3
+    # Permutation 3 O2, O4, O3, O1
+      prompt_option_order:
+        - position: 1
+          option_id: 3
+        - position: 2
+          option_id: 1
+        - position: 3
+          option_id: 4
+        - position: 4
+          option_id: 2
+
+  - test_variant_id: 112
+    test_code: abstract_permutation_options_2
+    name: "Abstract Permutation Options #2"
+    description: "Borda task directive; Stakeholders anonymous; Dimensions ordered on both, stakeholders and options, option permutation #2, abstract denominations."
+    prompt_yaml: "rendering/prompt_v2_neutral_context.yaml"
+    render_config_id: "sh_id_ord_op_ord"
+    render_config_yaml: "rendering/sh_id_ord_op_ord.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "abstract"
+
+    overrides:
+    # Override option presentation order for this variant.
+    # Baseline      O1, O2, O3, O4
+    # Permutation 1 O3, O1, O4, O2
+    # Permutation 2 O4, O2, O1, O3
+    # Permutation 3 O2, O4, O3, O1
+      prompt_option_order:
+        - position: 1
+          option_id: 4
+        - position: 2
+          option_id: 2
+        - position: 3
+          option_id: 1
+        - position: 4
+          option_id: 3
+
+  - test_variant_id: 113
+    test_code: abstract_permutation_options_3
+    name: "Abstract Permutation Options #3"
+    description: "Borda task directive; Stakeholders anonymous; Dimensions ordered on both, stakeholders and options, option permutation #3, abstract denominations."
+    prompt_yaml: "rendering/prompt_v2_neutral_context.yaml"
+    render_config_id: "sh_id_ord_op_ord"
+    render_config_yaml: "rendering/sh_id_ord_op_ord.yaml"
+
+    # Record which directive wording this variant uses.
+    task_directive_policy_code: "borda"
+    task_directive_variant_code: "default"
+
+    # Record which dimension wording variants this variant intends to use.
+    dimension_scale_variant_code: "default"
+    dimension_veto_phrase_variant_code: "default"
+    dimension_label_variant_code: "abstract"
+
+    overrides:
+    # Override option presentation order for this variant.
+    # Baseline      O1, O2, O3, O4
+    # Permutation 1 O3, O1, O4, O2
+    # Permutation 2 O4, O2, O1, O3
+    # Permutation 3 O2, O4, O3, O1
+      prompt_option_order:
+        - position: 1
+          option_id: 2
+        - position: 2
+          option_id: 4
+        - position: 3
+          option_id: 3
+        - position: 4
+          option_id: 1
+

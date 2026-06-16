@@ -1,0 +1,32 @@
+version: 1
+
+dimension_labels:
+  clinical_benefit: "clinical benefit"
+  safety: "safety"
+  affordability: "affordability"
+  convenience: "patient convenience"
+
+blocks:
+  # Options use sentences with fixed dimension positions
+  options:
+    style: template
+    line_prefix: "Option {index} "
+    sort_by: weight_desc
+    include_scale_adjectives: true
+    adjective_format: "{adjective} {label}"
+    template: "delivers {dim1}, {dim2}, {dim3} and {dim4}."
+
+  # Stakeholder preferences rendered as a sentence with fixed dimension positions
+  # Examples:
+  # "Stakeholder 1 prioritizes clinical benefit above all, followed by affordability, then patient convenience, with safety as least critical."
+  # "Stakeholder 1 ranks therapeutic effectiveness as most important, followed by cost efficiency, then treatment feasibility, with tolerability as least essential."
+  stakeholder_preferences:
+    style: template
+    line_prefix: "For Stakeholder {index}, "
+    sort_by: weight_desc
+    include_scale_adjectives: false
+    template: "the most critical factor is {dim1}, followed by {dim2}, then {dim3}, and finally {dim4}."
+
+  stakeholder_veto:
+    style: "none_literal"
+    none_literal: "None"

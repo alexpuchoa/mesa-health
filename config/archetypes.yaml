@@ -1,0 +1,164 @@
+version: '1.0'
+domain: healthcare_intervention
+created: '2026-05-28'
+
+archetypes:
+- archetype_id: 1
+  role_id: 1
+  code: a1_patient
+  name: A1 Patient
+  dimension_weights:
+    clinical_benefit: 0.4
+    safety: 0.3
+    affordability: 0.2
+    convenience: 0.1
+
+- archetype_id: 2
+  role_id: 1
+  code: a2_patient
+  name: A2 Patient
+  dimension_weights:
+    clinical_benefit: 0.1
+    safety: 0.4
+    affordability: 0.2
+    convenience: 0.3
+
+- archetype_id: 3
+  role_id: 1
+  code: a3_patient
+  name: A3 Patient
+  dimension_weights:
+    clinical_benefit: 0.1
+    safety: 0.3
+    affordability: 0.2
+    convenience: 0.4
+
+- archetype_id: 4
+  role_id: 1
+  code: a4_patient
+  name: A4 Patient
+  dimension_weights:
+    clinical_benefit: 0.2
+    safety: 0.3
+    affordability: 0.4
+    convenience: 0.1
+
+- archetype_id: 5
+  role_id: 2
+  code: a5_physician
+  name: A5 Physician
+  dimension_weights:
+    clinical_benefit: 0.1
+    safety: 0.4
+    affordability: 0.2
+    convenience: 0.3
+
+- archetype_id: 6
+  role_id: 2
+  code: a6_physician
+  name: A6 Physician
+  dimension_weights:
+    clinical_benefit: 0.1
+    safety: 0.4
+    affordability: 0.3
+    convenience: 0.2
+
+- archetype_id: 7
+  role_id: 2
+  code: a7_physician
+  name: A7 Physician
+  dimension_weights:
+    clinical_benefit: 0.2
+    safety: 0.4
+    affordability: 0.1
+    convenience: 0.3
+
+- archetype_id: 8
+  role_id: 2
+  code: a8_physician
+  name: A8 Physician
+  dimension_weights:
+    clinical_benefit: 0.1
+    safety: 0.2
+    affordability: 0.3
+    convenience: 0.4
+
+- archetype_id: 9
+  role_id: 3
+  code: a9_payer
+  name: A9 Payer
+  dimension_weights:
+    clinical_benefit: 0.4
+    safety: 0.1
+    affordability: 0.2
+    convenience: 0.3
+
+- archetype_id: 10
+  role_id: 3
+  code: a10_payer
+  name: A10 Payer
+  dimension_weights:
+    clinical_benefit: 0.4
+    safety: 0.2
+    affordability: 0.3
+    convenience: 0.1
+
+- archetype_id: 11
+  role_id: 3
+  code: a11_payer
+  name: A11 Payer
+  dimension_weights:
+    clinical_benefit: 0.2
+    safety: 0.3
+    affordability: 0.1
+    convenience: 0.4
+
+- archetype_id: 12
+  role_id: 3
+  code: a12_payer
+  name: A12 Payer
+  dimension_weights:
+    clinical_benefit: 0.4
+    safety: 0.1
+    affordability: 0.3
+    convenience: 0.2
+
+- archetype_id: 13
+  role_id: 4
+  code: a13_hospital
+  name: A13 Hospital
+  dimension_weights:
+    clinical_benefit: 0.1
+    safety: 0.3
+    affordability: 0.4
+    convenience: 0.2
+
+- archetype_id: 14
+  role_id: 4
+  code: a14_hospital
+  name: A14 Hospital
+  dimension_weights:
+    clinical_benefit: 0.2
+    safety: 0.4
+    affordability: 0.3
+    convenience: 0.1
+
+- archetype_id: 15
+  role_id: 4
+  code: a15_hospital
+  name: A15 Hospital
+  dimension_weights:
+    clinical_benefit: 0.4
+    safety: 0.1
+    affordability: 0.2
+    convenience: 0.3
+
+- archetype_id: 16
+  role_id: 4
+  code: a16_hospital
+  name: A16 Hospital
+  dimension_weights:
+    clinical_benefit: 0.4
+    safety: 0.1
+    affordability: 0.3
+    convenience: 0.2

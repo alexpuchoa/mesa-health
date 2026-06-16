@@ -1,0 +1,32 @@
+version: "1.0"
+#
+# Task directives are short text fragments injected into prompt templates via `{task_directive}`.
+# They define *what the model is being asked to optimize*, i.e., the aggregation policy/rule.
+#
+# These fragments are intentionally kept separate from prompt templates and render configs so you
+# can iterate on policy wording without touching prompt formatting.
+#
+task_directives:
+  # Borda: rank aggregation across stakeholders.
+  borda:
+    default: "achieves the highest overall preference ranking across stakeholders"
+    paraphrase: "best balances the preferences of all stakeholders"
+    paraphrase_01: "best balances stakeholder priorities"
+    paraphrase_02: "most broadly acceptable across all parties"
+    paraphrase_03: "receives the strongest combined support when considering everyone's priorities"
+
+  # Utilitarian: maximize total utility (sum across stakeholders).
+  utilitarian: 
+    default: "delivers the greatest combined benefit across all stakeholders"
+    paraphrase: "produces the greatest overall benefit to the group"
+    paraphrase_01: "generates the highest combined satisfaction when summing across all stakeholders"
+    paraphrase_02: "produces the highest combined benefit when all stakeholder preferences are summed"
+    paraphrase_03: "delivers the most total value to the group as a whole"
+
+  # Maximin: (Protect Worst-Off / Rawlsian)
+  maximin:
+    default: "best protects the worst-off stakeholder"
+    paraphrase: "ensures the least-satisfied stakeholder still receives acceptable outcomes"
+    paraphrase_01: "minimizes the maximum harm to any individual stakeholder"
+    paraphrase_02: "best safeguards the interests of the most vulnerable party"
+    paraphrase_03: "prioritizes fairness by improving the outcome of the least satisfied stakeholder as much as possible"

@@ -1,0 +1,56 @@
+version: '1.0'
+domain: healthcare_intervention
+created: '2026-05-18'
+
+options:
+- option_id: 1
+  code: o1
+  title: O1
+  option_text: 'clinical_benefit: 0.1
+    safety: 0.3
+    affordability: 0.2
+    convenience: 0.4'
+  dimension_weights:
+    clinical_benefit: 0.1
+    safety: 0.3
+    affordability: 0.2
+    convenience: 0.4
+
+- option_id: 2
+  code: o2
+  title: O2
+  option_text: 'clinical_benefit: 0.1
+    safety: 0.4
+    affordability: 0.2
+    convenience: 0.3'
+  dimension_weights:
+    clinical_benefit: 0.1
+    safety: 0.4
+    affordability: 0.2
+    convenience: 0.3
+
+- option_id: 3
+  code: o3
+  title: O3
+  option_text: 'clinical_benefit: 0.2
+    safety: 0.3
+    affordability: 0.4
+    convenience: 0.1'
+  dimension_weights:
+    clinical_benefit: 0.2
+    safety: 0.3
+    affordability: 0.4
+    convenience: 0.1
+
+- option_id: 4
+  code: o4
+  title: O4
+  option_text: clinical_benefit: 0.4
+    safety: 0.3
+    affordability: 0.2
+    convenience: 0.1'
+  dimension_weights:
+    clinical_benefit: 0.4
+    safety: 0.3
+    affordability: 0.2
+    convenience: 0.1

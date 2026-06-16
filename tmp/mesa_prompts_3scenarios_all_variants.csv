@@ -1,0 +1,2641 @@
+scenario_id,scenario_code,test_variant_id,test_code,variant_name,task_directive_policy_code,task_directive,displayed_option_order,displayed_stakeholder_order,prompt_yaml,render_config_yaml,prompt_sha256,prompt_text
+1,r1a1_r2a5_r3a9_r4a13,0,borda,Baseline,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,388f166d9a56b9ba43c5510e87bc5a479b0d7547b99764d17e7d0aa8d9ec846b,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Affordability > Safety > Patient convenience > Clinical benefit
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,1,borda_veto,Baseline with Veto,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2_veto.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord_veto.yaml,aa32d108fd87c6173ee8823dd01efdcc79697a081c223946dd5bfef3cd9ee704,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Affordability > Safety > Patient convenience > Clinical benefit
+
+## STAKEHOLDER RESTRICTIONS:
+What factors are explicitly restricted by stakeholders:
+None
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences and restrictions.
+- Eliminate options that violate any restriction.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,2,format_invariance_adj,Format Invariance (adjectives),borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_adj_op_adj.yaml,33511607383ff449af6bb2e87b0d031d5cd4b9e6b634ca35d395acd6748b30f7,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 has excellent convenience, good safety, limited affordability, poor clinical benefit
+Option 2 has excellent safety, good convenience, limited affordability, poor clinical benefit
+Option 3 has excellent affordability, good safety, limited clinical benefit, poor convenience
+Option 4 has excellent clinical benefit, good safety, limited affordability, poor convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: clinical benefit (highest priority), safety (high priority), affordability (moderate priority), convenience (low priority)
+Stakeholder 2 priorities: safety (highest priority), convenience (high priority), affordability (moderate priority), clinical benefit (low priority)
+Stakeholder 3 priorities: clinical benefit (highest priority), convenience (high priority), affordability (moderate priority), safety (low priority)
+Stakeholder 4 priorities: affordability (highest priority), safety (high priority), convenience (moderate priority), clinical benefit (low priority)
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,3,maximin,Maximin Task Directive,maximin,best protects the worst-off stakeholder,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,6a701a52d4b5ecfd0122e795de22eafd9cbc022e24f811c8d6ebfd4f4ed3bec6,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that best protects the worst-off stakeholder.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Affordability > Safety > Patient convenience > Clinical benefit
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that best protects the worst-off stakeholder.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,4,utilitarian,Utilitarian Task Directive,utilitarian,delivers the greatest combined benefit across all stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,4407a75a3ec779f7f8265e88eff72f6509eea52547599c20970f589a96b83028,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that delivers the greatest combined benefit across all stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Affordability > Safety > Patient convenience > Clinical benefit
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that delivers the greatest combined benefit across all stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,5,format_invariance_sent,Format Invariance (sentences),borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_sent_op_sent.yaml,01b08dc437227a3a228a2e45fd7bc8e720a3e9ec96fae5611c1c4b247c21bd70,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 delivers excellent patient convenience, good safety, limited affordability and poor clinical benefit.
+Option 2 delivers excellent safety, good patient convenience, limited affordability and poor clinical benefit.
+Option 3 delivers excellent affordability, good safety, limited clinical benefit and poor patient convenience.
+Option 4 delivers excellent clinical benefit, good safety, limited affordability and poor patient convenience.
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+For Stakeholder 1, the most critical factor is clinical benefit, followed by safety, then affordability, and finally patient convenience.
+For Stakeholder 2, the most critical factor is safety, followed by patient convenience, then affordability, and finally clinical benefit.
+For Stakeholder 3, the most critical factor is clinical benefit, followed by patient convenience, then affordability, and finally safety.
+For Stakeholder 4, the most critical factor is affordability, followed by safety, then patient convenience, and finally clinical benefit.
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,7,paraphrasing_synonym,Paraphrasing Adjective + Label Synonym,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_adj_op_adj.yaml,fecf8364d1784f111d47eb1be161335e073f5974aee03a8e957faf6228cff53a,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 has strong Patient Practicality, solid Safety Profile, moderate Economic Accessibility, weak Therapeutic Effectiveness
+Option 2 has strong Safety Profile, solid Patient Practicality, moderate Economic Accessibility, weak Therapeutic Effectiveness
+Option 3 has strong Economic Accessibility, solid Safety Profile, moderate Therapeutic Effectiveness, weak Patient Practicality
+Option 4 has strong Therapeutic Effectiveness, solid Safety Profile, moderate Economic Accessibility, weak Patient Practicality
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Therapeutic Effectiveness (critical), Safety Profile (important), Economic Accessibility (secondary), Patient Practicality (minor)
+Stakeholder 2 priorities: Safety Profile (critical), Patient Practicality (important), Economic Accessibility (secondary), Therapeutic Effectiveness (minor)
+Stakeholder 3 priorities: Therapeutic Effectiveness (critical), Patient Practicality (important), Economic Accessibility (secondary), Safety Profile (minor)
+Stakeholder 4 priorities: Economic Accessibility (critical), Safety Profile (important), Patient Practicality (secondary), Therapeutic Effectiveness (minor)
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,8,emphasis_pos,Positive Emphasis Options,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_sent_pos.yaml,d5ab63e0802ceabdd725f220612d3c4000bb2e95bb2774535d5c707cce2ee347,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 ensures excellent patient convenience and good safety. However, it delievers limited affordability and provides poor clinical benefit.
+Option 2 ensures excellent safety and good patient convenience. However, it delievers limited affordability and provides poor clinical benefit.
+Option 3 ensures excellent affordability and good safety. However, it delievers limited clinical benefit and provides poor patient convenience.
+Option 4 ensures excellent clinical benefit and good safety. However, it delievers limited affordability and provides poor patient convenience.
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: clinical benefit > safety > affordability > patient convenience
+Stakeholder 2 priorities: safety > patient convenience > affordability > clinical benefit
+Stakeholder 3 priorities: clinical benefit > patient convenience > affordability > safety
+Stakeholder 4 priorities: affordability > safety > patient convenience > clinical benefit
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,9,emphasis_neg,Negative Emphasis Options,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_sent_neg.yaml,4e7cc4dd8e1cdde02826ab42095fd5667dd22729e834167470340aa3ecc5fc53,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 offers only limited affordability and poor clinical benefit. However, it provides excellent patient convenience and provides good safety.
+Option 2 offers only limited affordability and poor clinical benefit. However, it provides excellent safety and provides good patient convenience.
+Option 3 offers only limited clinical benefit and poor patient convenience. However, it provides excellent affordability and provides good safety.
+Option 4 offers only limited affordability and poor patient convenience. However, it provides excellent clinical benefit and provides good safety.
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: clinical benefit > safety > affordability > patient convenience
+Stakeholder 2 priorities: safety > patient convenience > affordability > clinical benefit
+Stakeholder 3 priorities: clinical benefit > patient convenience > affordability > safety
+Stakeholder 4 priorities: affordability > safety > patient convenience > clinical benefit
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,10,stakeholder_roles,Stakeholder with Roles,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_nm_ord_op_ord.yaml,b86cdb1c5778a677c7eb0de9ac6609f96f2bb7ec71904116fa40bcfdec78d890,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: convenience > safety > affordability > clinical benefit
+Option 2: safety > convenience > affordability > clinical benefit
+Option 3: affordability > safety > clinical benefit > convenience
+Option 4: clinical benefit > safety > affordability > convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Patient priorities: clinical benefit > safety > affordability > convenience
+Physician priorities: safety > convenience > affordability > clinical benefit
+Healthcare Payer priorities: clinical benefit > convenience > affordability > safety
+Hospital priorities: affordability > safety > convenience > clinical benefit
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,11,permulation_options_1,Permutation Options #1,borda,achieves the highest overall preference ranking across stakeholders,3|1|4|2,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,dfa62f9b12b3114a535e0789a5fc3e79cc3ec9d5de2fcb4c2af9de9f063727a5,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Affordability > Safety > Clinical benefit > Patient convenience
+Option 2: Patient convenience > Safety > Affordability > Clinical benefit
+Option 3: Clinical benefit > Safety > Affordability > Patient convenience
+Option 4: Safety > Patient convenience > Affordability > Clinical benefit
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Affordability > Safety > Patient convenience > Clinical benefit
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,12,permulation_options_2,Permutation Options #2,borda,achieves the highest overall preference ranking across stakeholders,4|2|1|3,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,545c0e43bc81ed17fd1603056b5fe6a9daac11d376f6bdc5d2ab8bd442dbe47d,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Clinical benefit > Safety > Affordability > Patient convenience
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Patient convenience > Safety > Affordability > Clinical benefit
+Option 4: Affordability > Safety > Clinical benefit > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Affordability > Safety > Patient convenience > Clinical benefit
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,13,permulation_options_3,Permutation Options #3,borda,achieves the highest overall preference ranking across stakeholders,2|4|3|1,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,8109dc81fb728a34dd8bad1d61e6b4b38ddb13188cb422a69185c82c2f5d0364,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Safety > Patient convenience > Affordability > Clinical benefit
+Option 2: Clinical benefit > Safety > Affordability > Patient convenience
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Patient convenience > Safety > Affordability > Clinical benefit
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Affordability > Safety > Patient convenience > Clinical benefit
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,14,permulation_stakeholders_1,Permutation Stakeholders #1,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,3|1|4|2,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,37cda518a332bcafe191d5ca20190eeaf2f7fcb67148310b50cfb2eb7f01f32d,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 2 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 3 priorities: Affordability > Safety > Patient convenience > Clinical benefit
+Stakeholder 4 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,15,permulation_stakeholders_2,Permutation Stakeholders #2,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,4|2|1|3,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,95a438143cd3fd5956b27685861c9662c58c183a697aa1871e59eeec9bbeb6ca,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Affordability > Safety > Patient convenience > Clinical benefit
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 4 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,16,permulation_stakeholders_3,Permutation Stakeholders #3,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,2|4|3|1,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,39d862ec733d8c88e87075091224e9582f614f16145974a696099bbaf29bd7c1,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 2 priorities: Affordability > Safety > Patient convenience > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,17,exaggeration,Exaggerated Adjectives,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_adj.yaml,068fa39c1864a77c40db331b247bbe09fc8acb4bebeeba052f86ad46c1eae684,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 has outstanding convenience, impressive safety, disappointing affordability, very poor clinical benefit
+Option 2 has outstanding safety, impressive convenience, disappointing affordability, very poor clinical benefit
+Option 3 has outstanding affordability, impressive safety, disappointing clinical benefit, very poor convenience
+Option 4 has outstanding clinical benefit, impressive safety, disappointing affordability, very poor convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: clinical benefit > safety > affordability > convenience
+Stakeholder 2 priorities: safety > convenience > affordability > clinical benefit
+Stakeholder 3 priorities: clinical benefit > convenience > affordability > safety
+Stakeholder 4 priorities: affordability > safety > convenience > clinical benefit
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,23,paraphrasing_adj,Paraphrasing Adjective ONLY,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_adj_op_adj.yaml,e68f4fcc36ff5c2bf279aefab2ae62756a634f53c54d3b584b3fbdc20fde1e0b,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 has strong convenience, solid safety, moderate affordability, weak clinical benefit
+Option 2 has strong safety, solid convenience, moderate affordability, weak clinical benefit
+Option 3 has strong affordability, solid safety, moderate clinical benefit, weak convenience
+Option 4 has strong clinical benefit, solid safety, moderate affordability, weak convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: clinical benefit (critical), safety (important), affordability (secondary), convenience (minor)
+Stakeholder 2 priorities: safety (critical), convenience (important), affordability (secondary), clinical benefit (minor)
+Stakeholder 3 priorities: clinical benefit (critical), convenience (important), affordability (secondary), safety (minor)
+Stakeholder 4 priorities: affordability (critical), safety (important), convenience (secondary), clinical benefit (minor)
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,24,stakeholder_roles_alt_01,Stakeholder with Alternative Roles 01,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_nm_ord_op_ord.yaml,0e97893007fbeb05aaf6371176d6728703f8992344aaad1b3961081f57315f91,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: convenience > safety > affordability > clinical benefit
+Option 2: safety > convenience > affordability > clinical benefit
+Option 3: affordability > safety > clinical benefit > convenience
+Option 4: clinical benefit > safety > affordability > convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Sick Infant's Family priorities: clinical benefit > safety > affordability > convenience
+Community Health Worker priorities: safety > convenience > affordability > clinical benefit
+Insurance Corporation priorities: clinical benefit > convenience > affordability > safety
+For-profit Hospital Chain priorities: affordability > safety > convenience > clinical benefit
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,31,stakeholder_roles_alt_02,Stakeholder with Alternative Roles 02,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_nm_ord_op_ord.yaml,f6a5e7084440789771d5a488223972dc4afa1dc195c0df33ddbab03105fb3572,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: convenience > safety > affordability > clinical benefit
+Option 2: safety > convenience > affordability > clinical benefit
+Option 3: affordability > safety > clinical benefit > convenience
+Option 4: clinical benefit > safety > affordability > convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Sick Elderly Person priorities: clinical benefit > safety > affordability > convenience
+Junior Health Practiotioner priorities: safety > convenience > affordability > clinical benefit
+Public Insurance System priorities: clinical benefit > convenience > affordability > safety
+Private Clinic priorities: affordability > safety > convenience > clinical benefit
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,33,paraphrasing_synonym_01,Paraphrasing Adjective + Label Synonym 01,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_adj_op_adj.yaml,8561b7a0ad7e30ad28bfa300a527b4563976f063bb4e1b03b213a1949b0d6116,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 has strong Treatment Tolerability, solid Treatment Safety, moderate Cost Efficiency, weak Clinical Effectiveness
+Option 2 has strong Treatment Safety, solid Treatment Tolerability, moderate Cost Efficiency, weak Clinical Effectiveness
+Option 3 has strong Cost Efficiency, solid Treatment Safety, moderate Clinical Effectiveness, weak Treatment Tolerability
+Option 4 has strong Clinical Effectiveness, solid Treatment Safety, moderate Cost Efficiency, weak Treatment Tolerability
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical Effectiveness (critical), Treatment Safety (important), Cost Efficiency (secondary), Treatment Tolerability (minor)
+Stakeholder 2 priorities: Treatment Safety (critical), Treatment Tolerability (important), Cost Efficiency (secondary), Clinical Effectiveness (minor)
+Stakeholder 3 priorities: Clinical Effectiveness (critical), Treatment Tolerability (important), Cost Efficiency (secondary), Treatment Safety (minor)
+Stakeholder 4 priorities: Cost Efficiency (critical), Treatment Safety (important), Treatment Tolerability (secondary), Clinical Effectiveness (minor)
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,44,abstract_denominations,Abstract Denominations,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2_neutral_context.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,a5704239f5c73b849959fc066fd7bb9145449e8bfbd04a8bb0baaf9e2670c7e0,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE OPTIONS:
+Below are the options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Criterion δ > Criterion β > Criterion γ > Criterion α
+Option 2: Criterion β > Criterion δ > Criterion γ > Criterion α
+Option 3: Criterion γ > Criterion β > Criterion α > Criterion δ
+Option 4: Criterion α > Criterion β > Criterion γ > Criterion δ
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Criterion α > Criterion β > Criterion γ > Criterion δ
+Stakeholder 2 priorities: Criterion β > Criterion δ > Criterion γ > Criterion α
+Stakeholder 3 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+Stakeholder 4 priorities: Criterion γ > Criterion β > Criterion δ > Criterion α
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,111,abstract_permutation_options_1,Abstract Permutation Options #1,borda,achieves the highest overall preference ranking across stakeholders,3|1|4|2,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2_neutral_context.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,371c62a9b766e58baafadcfe8a44dc26091232e490159a0f2e2baf95de4e27d1,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE OPTIONS:
+Below are the options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Criterion γ > Criterion β > Criterion α > Criterion δ
+Option 2: Criterion δ > Criterion β > Criterion γ > Criterion α
+Option 3: Criterion α > Criterion β > Criterion γ > Criterion δ
+Option 4: Criterion β > Criterion δ > Criterion γ > Criterion α
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Criterion α > Criterion β > Criterion γ > Criterion δ
+Stakeholder 2 priorities: Criterion β > Criterion δ > Criterion γ > Criterion α
+Stakeholder 3 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+Stakeholder 4 priorities: Criterion γ > Criterion β > Criterion δ > Criterion α
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,112,abstract_permutation_options_2,Abstract Permutation Options #2,borda,achieves the highest overall preference ranking across stakeholders,4|2|1|3,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2_neutral_context.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,baa064b825def2da679506cded00b2a67dfb103c1b63585f5b45bf54c808f5a3,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE OPTIONS:
+Below are the options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Criterion α > Criterion β > Criterion γ > Criterion δ
+Option 2: Criterion β > Criterion δ > Criterion γ > Criterion α
+Option 3: Criterion δ > Criterion β > Criterion γ > Criterion α
+Option 4: Criterion γ > Criterion β > Criterion α > Criterion δ
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Criterion α > Criterion β > Criterion γ > Criterion δ
+Stakeholder 2 priorities: Criterion β > Criterion δ > Criterion γ > Criterion α
+Stakeholder 3 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+Stakeholder 4 priorities: Criterion γ > Criterion β > Criterion δ > Criterion α
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+1,r1a1_r2a5_r3a9_r4a13,113,abstract_permutation_options_3,Abstract Permutation Options #3,borda,achieves the highest overall preference ranking across stakeholders,2|4|3|1,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2_neutral_context.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,6dd1b6d9adc782ca261630f8a94928df077b8efab44c9969e0c0dc07c82a15b6,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE OPTIONS:
+Below are the options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Criterion β > Criterion δ > Criterion γ > Criterion α
+Option 2: Criterion α > Criterion β > Criterion γ > Criterion δ
+Option 3: Criterion γ > Criterion β > Criterion α > Criterion δ
+Option 4: Criterion δ > Criterion β > Criterion γ > Criterion α
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Criterion α > Criterion β > Criterion γ > Criterion δ
+Stakeholder 2 priorities: Criterion β > Criterion δ > Criterion γ > Criterion α
+Stakeholder 3 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+Stakeholder 4 priorities: Criterion γ > Criterion β > Criterion δ > Criterion α
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,0,borda,Baseline,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,adfa243f6c623461cd9c8257749519981e7ec3fe5ccae14bb554992f70193e8b,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Safety > Affordability > Clinical benefit > Patient convenience
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,1,borda_veto,Baseline with Veto,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2_veto.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord_veto.yaml,bc2f689b7fbba51d0c4851e06a0d09829b5ff8dcf86285e6adebc79833babccb,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Safety > Affordability > Clinical benefit > Patient convenience
+
+## STAKEHOLDER RESTRICTIONS:
+What factors are explicitly restricted by stakeholders:
+None
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences and restrictions.
+- Eliminate options that violate any restriction.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,2,format_invariance_adj,Format Invariance (adjectives),borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_adj_op_adj.yaml,1c265fdcc9425eff6f8a27c8ebb38be8b26861c1524f66d4460de6bba4e67cb7,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 has excellent convenience, good safety, limited affordability, poor clinical benefit
+Option 2 has excellent safety, good convenience, limited affordability, poor clinical benefit
+Option 3 has excellent affordability, good safety, limited clinical benefit, poor convenience
+Option 4 has excellent clinical benefit, good safety, limited affordability, poor convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: clinical benefit (highest priority), safety (high priority), affordability (moderate priority), convenience (low priority)
+Stakeholder 2 priorities: safety (highest priority), convenience (high priority), affordability (moderate priority), clinical benefit (low priority)
+Stakeholder 3 priorities: clinical benefit (highest priority), convenience (high priority), affordability (moderate priority), safety (low priority)
+Stakeholder 4 priorities: safety (highest priority), affordability (high priority), clinical benefit (moderate priority), convenience (low priority)
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,3,maximin,Maximin Task Directive,maximin,best protects the worst-off stakeholder,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,941758d8466e3945a3e55e78bc154f3c1f909d8a93631421f5dc0162cd26dc18,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that best protects the worst-off stakeholder.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Safety > Affordability > Clinical benefit > Patient convenience
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that best protects the worst-off stakeholder.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,4,utilitarian,Utilitarian Task Directive,utilitarian,delivers the greatest combined benefit across all stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,ff6eaf6ea172d5fcc47d5d897d2c45bd33e9bf990746b59c2c25134648357856,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that delivers the greatest combined benefit across all stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Safety > Affordability > Clinical benefit > Patient convenience
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that delivers the greatest combined benefit across all stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,5,format_invariance_sent,Format Invariance (sentences),borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_sent_op_sent.yaml,8a65376a67f2295654b362f387298b7b1fe7772010df5828e7c548bd44b452da,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 delivers excellent patient convenience, good safety, limited affordability and poor clinical benefit.
+Option 2 delivers excellent safety, good patient convenience, limited affordability and poor clinical benefit.
+Option 3 delivers excellent affordability, good safety, limited clinical benefit and poor patient convenience.
+Option 4 delivers excellent clinical benefit, good safety, limited affordability and poor patient convenience.
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+For Stakeholder 1, the most critical factor is clinical benefit, followed by safety, then affordability, and finally patient convenience.
+For Stakeholder 2, the most critical factor is safety, followed by patient convenience, then affordability, and finally clinical benefit.
+For Stakeholder 3, the most critical factor is clinical benefit, followed by patient convenience, then affordability, and finally safety.
+For Stakeholder 4, the most critical factor is safety, followed by affordability, then clinical benefit, and finally patient convenience.
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,7,paraphrasing_synonym,Paraphrasing Adjective + Label Synonym,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_adj_op_adj.yaml,ff2c620d581fbcece523c75f2110f30cc40df2dfabdc2a5636fda3a18ad335ec,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 has strong Patient Practicality, solid Safety Profile, moderate Economic Accessibility, weak Therapeutic Effectiveness
+Option 2 has strong Safety Profile, solid Patient Practicality, moderate Economic Accessibility, weak Therapeutic Effectiveness
+Option 3 has strong Economic Accessibility, solid Safety Profile, moderate Therapeutic Effectiveness, weak Patient Practicality
+Option 4 has strong Therapeutic Effectiveness, solid Safety Profile, moderate Economic Accessibility, weak Patient Practicality
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Therapeutic Effectiveness (critical), Safety Profile (important), Economic Accessibility (secondary), Patient Practicality (minor)
+Stakeholder 2 priorities: Safety Profile (critical), Patient Practicality (important), Economic Accessibility (secondary), Therapeutic Effectiveness (minor)
+Stakeholder 3 priorities: Therapeutic Effectiveness (critical), Patient Practicality (important), Economic Accessibility (secondary), Safety Profile (minor)
+Stakeholder 4 priorities: Safety Profile (critical), Economic Accessibility (important), Therapeutic Effectiveness (secondary), Patient Practicality (minor)
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,8,emphasis_pos,Positive Emphasis Options,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_sent_pos.yaml,c52bdb3d0cd3da05071baa877c8f7cb2bf8479c972cf35b2c691da3b62c43ad2,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 ensures excellent patient convenience and good safety. However, it delievers limited affordability and provides poor clinical benefit.
+Option 2 ensures excellent safety and good patient convenience. However, it delievers limited affordability and provides poor clinical benefit.
+Option 3 ensures excellent affordability and good safety. However, it delievers limited clinical benefit and provides poor patient convenience.
+Option 4 ensures excellent clinical benefit and good safety. However, it delievers limited affordability and provides poor patient convenience.
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: clinical benefit > safety > affordability > patient convenience
+Stakeholder 2 priorities: safety > patient convenience > affordability > clinical benefit
+Stakeholder 3 priorities: clinical benefit > patient convenience > affordability > safety
+Stakeholder 4 priorities: safety > affordability > clinical benefit > patient convenience
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,9,emphasis_neg,Negative Emphasis Options,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_sent_neg.yaml,bb634b51780902d50a4df3b902a9e883204ba332a6c7e51db49a5e1be8556f47,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 offers only limited affordability and poor clinical benefit. However, it provides excellent patient convenience and provides good safety.
+Option 2 offers only limited affordability and poor clinical benefit. However, it provides excellent safety and provides good patient convenience.
+Option 3 offers only limited clinical benefit and poor patient convenience. However, it provides excellent affordability and provides good safety.
+Option 4 offers only limited affordability and poor patient convenience. However, it provides excellent clinical benefit and provides good safety.
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: clinical benefit > safety > affordability > patient convenience
+Stakeholder 2 priorities: safety > patient convenience > affordability > clinical benefit
+Stakeholder 3 priorities: clinical benefit > patient convenience > affordability > safety
+Stakeholder 4 priorities: safety > affordability > clinical benefit > patient convenience
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,10,stakeholder_roles,Stakeholder with Roles,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_nm_ord_op_ord.yaml,6bd43be6e4d81c7e079390b2324a188f0c6eb137dea4c9a8038e4e3e104f92b9,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: convenience > safety > affordability > clinical benefit
+Option 2: safety > convenience > affordability > clinical benefit
+Option 3: affordability > safety > clinical benefit > convenience
+Option 4: clinical benefit > safety > affordability > convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Patient priorities: clinical benefit > safety > affordability > convenience
+Physician priorities: safety > convenience > affordability > clinical benefit
+Healthcare Payer priorities: clinical benefit > convenience > affordability > safety
+Hospital priorities: safety > affordability > clinical benefit > convenience
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,11,permulation_options_1,Permutation Options #1,borda,achieves the highest overall preference ranking across stakeholders,3|1|4|2,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,574d24ebdb24d30b41a19fe527c9bcdf4a864e76fd56c64abff0daae98883cdd,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Affordability > Safety > Clinical benefit > Patient convenience
+Option 2: Patient convenience > Safety > Affordability > Clinical benefit
+Option 3: Clinical benefit > Safety > Affordability > Patient convenience
+Option 4: Safety > Patient convenience > Affordability > Clinical benefit
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Safety > Affordability > Clinical benefit > Patient convenience
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,12,permulation_options_2,Permutation Options #2,borda,achieves the highest overall preference ranking across stakeholders,4|2|1|3,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,28ea80b2664161119be40ec5d6b1d34026e8191fdddbeff1b1418157d6f0cd90,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Clinical benefit > Safety > Affordability > Patient convenience
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Patient convenience > Safety > Affordability > Clinical benefit
+Option 4: Affordability > Safety > Clinical benefit > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Safety > Affordability > Clinical benefit > Patient convenience
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,13,permulation_options_3,Permutation Options #3,borda,achieves the highest overall preference ranking across stakeholders,2|4|3|1,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,f4535aa099b27b7fca7b1d9e09b3a14d1e906cf6761acb40b1861e8cc89a8414,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Safety > Patient convenience > Affordability > Clinical benefit
+Option 2: Clinical benefit > Safety > Affordability > Patient convenience
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Patient convenience > Safety > Affordability > Clinical benefit
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Safety > Affordability > Clinical benefit > Patient convenience
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,14,permulation_stakeholders_1,Permutation Stakeholders #1,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,3|1|4|2,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,a58ec5283769debda174386c5466244cce356435108912ae64c0220b0f6882d2,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 2 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 3 priorities: Safety > Affordability > Clinical benefit > Patient convenience
+Stakeholder 4 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,15,permulation_stakeholders_2,Permutation Stakeholders #2,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,4|2|1|3,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,be1f84a5f0623bcaf853ec6a81392ebfa638186dfad5e4b78c16797f8c0ebc07,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Safety > Affordability > Clinical benefit > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 4 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,16,permulation_stakeholders_3,Permutation Stakeholders #3,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,2|4|3|1,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,1f3f29e704b551cca87d676f5fe4470417d2d8d1e6f7c87e19529c71fe444955,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 2 priorities: Safety > Affordability > Clinical benefit > Patient convenience
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,17,exaggeration,Exaggerated Adjectives,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_adj.yaml,90703b477ada5f940bf2e5a6ef2137c2ce2dbb78b7d51301edda2f5f663cb8ff,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 has outstanding convenience, impressive safety, disappointing affordability, very poor clinical benefit
+Option 2 has outstanding safety, impressive convenience, disappointing affordability, very poor clinical benefit
+Option 3 has outstanding affordability, impressive safety, disappointing clinical benefit, very poor convenience
+Option 4 has outstanding clinical benefit, impressive safety, disappointing affordability, very poor convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: clinical benefit > safety > affordability > convenience
+Stakeholder 2 priorities: safety > convenience > affordability > clinical benefit
+Stakeholder 3 priorities: clinical benefit > convenience > affordability > safety
+Stakeholder 4 priorities: safety > affordability > clinical benefit > convenience
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,23,paraphrasing_adj,Paraphrasing Adjective ONLY,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_adj_op_adj.yaml,1e8b92355cfce8f7b51da6b37654d05e78212a32cae8b6506e7058e79f2470b9,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 has strong convenience, solid safety, moderate affordability, weak clinical benefit
+Option 2 has strong safety, solid convenience, moderate affordability, weak clinical benefit
+Option 3 has strong affordability, solid safety, moderate clinical benefit, weak convenience
+Option 4 has strong clinical benefit, solid safety, moderate affordability, weak convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: clinical benefit (critical), safety (important), affordability (secondary), convenience (minor)
+Stakeholder 2 priorities: safety (critical), convenience (important), affordability (secondary), clinical benefit (minor)
+Stakeholder 3 priorities: clinical benefit (critical), convenience (important), affordability (secondary), safety (minor)
+Stakeholder 4 priorities: safety (critical), affordability (important), clinical benefit (secondary), convenience (minor)
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,24,stakeholder_roles_alt_01,Stakeholder with Alternative Roles 01,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_nm_ord_op_ord.yaml,ee235bca6803ceb92e9277b5dbdff054a8bd2f58a39d5d9c2e71cd5e903933e2,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: convenience > safety > affordability > clinical benefit
+Option 2: safety > convenience > affordability > clinical benefit
+Option 3: affordability > safety > clinical benefit > convenience
+Option 4: clinical benefit > safety > affordability > convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Sick Infant's Family priorities: clinical benefit > safety > affordability > convenience
+Community Health Worker priorities: safety > convenience > affordability > clinical benefit
+Insurance Corporation priorities: clinical benefit > convenience > affordability > safety
+For-profit Hospital Chain priorities: safety > affordability > clinical benefit > convenience
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,31,stakeholder_roles_alt_02,Stakeholder with Alternative Roles 02,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_nm_ord_op_ord.yaml,148083f216beccbf2fa81a05c3d924ad6e9573d05db011ce92033998bac95362,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: convenience > safety > affordability > clinical benefit
+Option 2: safety > convenience > affordability > clinical benefit
+Option 3: affordability > safety > clinical benefit > convenience
+Option 4: clinical benefit > safety > affordability > convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Sick Elderly Person priorities: clinical benefit > safety > affordability > convenience
+Junior Health Practiotioner priorities: safety > convenience > affordability > clinical benefit
+Public Insurance System priorities: clinical benefit > convenience > affordability > safety
+Private Clinic priorities: safety > affordability > clinical benefit > convenience
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,33,paraphrasing_synonym_01,Paraphrasing Adjective + Label Synonym 01,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_adj_op_adj.yaml,d79863f2268429ca9c01ac97ce1f5a269fe10fa71f946f184656fd7246944b11,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 has strong Treatment Tolerability, solid Treatment Safety, moderate Cost Efficiency, weak Clinical Effectiveness
+Option 2 has strong Treatment Safety, solid Treatment Tolerability, moderate Cost Efficiency, weak Clinical Effectiveness
+Option 3 has strong Cost Efficiency, solid Treatment Safety, moderate Clinical Effectiveness, weak Treatment Tolerability
+Option 4 has strong Clinical Effectiveness, solid Treatment Safety, moderate Cost Efficiency, weak Treatment Tolerability
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical Effectiveness (critical), Treatment Safety (important), Cost Efficiency (secondary), Treatment Tolerability (minor)
+Stakeholder 2 priorities: Treatment Safety (critical), Treatment Tolerability (important), Cost Efficiency (secondary), Clinical Effectiveness (minor)
+Stakeholder 3 priorities: Clinical Effectiveness (critical), Treatment Tolerability (important), Cost Efficiency (secondary), Treatment Safety (minor)
+Stakeholder 4 priorities: Treatment Safety (critical), Cost Efficiency (important), Clinical Effectiveness (secondary), Treatment Tolerability (minor)
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,44,abstract_denominations,Abstract Denominations,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2_neutral_context.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,eda2e62eac8884f9bbe4bccf772f07de4d1094a149ff0179259f940bffa94ee4,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE OPTIONS:
+Below are the options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Criterion δ > Criterion β > Criterion γ > Criterion α
+Option 2: Criterion β > Criterion δ > Criterion γ > Criterion α
+Option 3: Criterion γ > Criterion β > Criterion α > Criterion δ
+Option 4: Criterion α > Criterion β > Criterion γ > Criterion δ
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Criterion α > Criterion β > Criterion γ > Criterion δ
+Stakeholder 2 priorities: Criterion β > Criterion δ > Criterion γ > Criterion α
+Stakeholder 3 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+Stakeholder 4 priorities: Criterion β > Criterion γ > Criterion α > Criterion δ
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,111,abstract_permutation_options_1,Abstract Permutation Options #1,borda,achieves the highest overall preference ranking across stakeholders,3|1|4|2,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2_neutral_context.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,543cca66269383fd087ba268dddaa4340b6dbe9277be067ac61e6800da038dbe,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE OPTIONS:
+Below are the options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Criterion γ > Criterion β > Criterion α > Criterion δ
+Option 2: Criterion δ > Criterion β > Criterion γ > Criterion α
+Option 3: Criterion α > Criterion β > Criterion γ > Criterion δ
+Option 4: Criterion β > Criterion δ > Criterion γ > Criterion α
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Criterion α > Criterion β > Criterion γ > Criterion δ
+Stakeholder 2 priorities: Criterion β > Criterion δ > Criterion γ > Criterion α
+Stakeholder 3 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+Stakeholder 4 priorities: Criterion β > Criterion γ > Criterion α > Criterion δ
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,112,abstract_permutation_options_2,Abstract Permutation Options #2,borda,achieves the highest overall preference ranking across stakeholders,4|2|1|3,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2_neutral_context.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,7c714ace6645d6f46e3af162940b10be8ea69749e8da2ea8a2417b5335fcf888,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE OPTIONS:
+Below are the options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Criterion α > Criterion β > Criterion γ > Criterion δ
+Option 2: Criterion β > Criterion δ > Criterion γ > Criterion α
+Option 3: Criterion δ > Criterion β > Criterion γ > Criterion α
+Option 4: Criterion γ > Criterion β > Criterion α > Criterion δ
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Criterion α > Criterion β > Criterion γ > Criterion δ
+Stakeholder 2 priorities: Criterion β > Criterion δ > Criterion γ > Criterion α
+Stakeholder 3 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+Stakeholder 4 priorities: Criterion β > Criterion γ > Criterion α > Criterion δ
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+2,r1a1_r2a5_r3a9_r4a14,113,abstract_permutation_options_3,Abstract Permutation Options #3,borda,achieves the highest overall preference ranking across stakeholders,2|4|3|1,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2_neutral_context.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,e1dccef387f1455cb3e0f6571415a10a1b2317ca2e6c539e87d2c053fe136032,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE OPTIONS:
+Below are the options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Criterion β > Criterion δ > Criterion γ > Criterion α
+Option 2: Criterion α > Criterion β > Criterion γ > Criterion δ
+Option 3: Criterion γ > Criterion β > Criterion α > Criterion δ
+Option 4: Criterion δ > Criterion β > Criterion γ > Criterion α
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Criterion α > Criterion β > Criterion γ > Criterion δ
+Stakeholder 2 priorities: Criterion β > Criterion δ > Criterion γ > Criterion α
+Stakeholder 3 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+Stakeholder 4 priorities: Criterion β > Criterion γ > Criterion α > Criterion δ
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,0,borda,Baseline,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,2c04e57707e6f526213f68c7b5fc7f91cb0b70114c7396988f12d12269c7cf4d,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,1,borda_veto,Baseline with Veto,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2_veto.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord_veto.yaml,2cb1952523047bce6e5571743665120c5e7ec48614c332adbbc5acf59adc8209,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+
+## STAKEHOLDER RESTRICTIONS:
+What factors are explicitly restricted by stakeholders:
+None
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences and restrictions.
+- Eliminate options that violate any restriction.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,2,format_invariance_adj,Format Invariance (adjectives),borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_adj_op_adj.yaml,699b6459cf7e9c2dd88c4e37d9ba067bcdec6701cb28aafbf61a3dca50b7d5ff,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 has excellent convenience, good safety, limited affordability, poor clinical benefit
+Option 2 has excellent safety, good convenience, limited affordability, poor clinical benefit
+Option 3 has excellent affordability, good safety, limited clinical benefit, poor convenience
+Option 4 has excellent clinical benefit, good safety, limited affordability, poor convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: clinical benefit (highest priority), safety (high priority), affordability (moderate priority), convenience (low priority)
+Stakeholder 2 priorities: safety (highest priority), convenience (high priority), affordability (moderate priority), clinical benefit (low priority)
+Stakeholder 3 priorities: clinical benefit (highest priority), convenience (high priority), affordability (moderate priority), safety (low priority)
+Stakeholder 4 priorities: clinical benefit (highest priority), convenience (high priority), affordability (moderate priority), safety (low priority)
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,3,maximin,Maximin Task Directive,maximin,best protects the worst-off stakeholder,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,65117fe36b58ece12cd337033750d5c9f2b32700dd77dd3ea0000ce01eabd723,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that best protects the worst-off stakeholder.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that best protects the worst-off stakeholder.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,4,utilitarian,Utilitarian Task Directive,utilitarian,delivers the greatest combined benefit across all stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,f12e5f020eb4023baf6ab0653da9645ce74718d0f0e53a386de3cdfbdd23371f,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that delivers the greatest combined benefit across all stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that delivers the greatest combined benefit across all stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,5,format_invariance_sent,Format Invariance (sentences),borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_sent_op_sent.yaml,e917e5f104605dbf5edae3e715901468cf4ffdb4706c4436cf66a13b6e64c92a,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 delivers excellent patient convenience, good safety, limited affordability and poor clinical benefit.
+Option 2 delivers excellent safety, good patient convenience, limited affordability and poor clinical benefit.
+Option 3 delivers excellent affordability, good safety, limited clinical benefit and poor patient convenience.
+Option 4 delivers excellent clinical benefit, good safety, limited affordability and poor patient convenience.
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+For Stakeholder 1, the most critical factor is clinical benefit, followed by safety, then affordability, and finally patient convenience.
+For Stakeholder 2, the most critical factor is safety, followed by patient convenience, then affordability, and finally clinical benefit.
+For Stakeholder 3, the most critical factor is clinical benefit, followed by patient convenience, then affordability, and finally safety.
+For Stakeholder 4, the most critical factor is clinical benefit, followed by patient convenience, then affordability, and finally safety.
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,7,paraphrasing_synonym,Paraphrasing Adjective + Label Synonym,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_adj_op_adj.yaml,a824b2a544683bb23a73fb9ac166f23c4b0b3dec71a3fd7bd1806193670b52c4,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 has strong Patient Practicality, solid Safety Profile, moderate Economic Accessibility, weak Therapeutic Effectiveness
+Option 2 has strong Safety Profile, solid Patient Practicality, moderate Economic Accessibility, weak Therapeutic Effectiveness
+Option 3 has strong Economic Accessibility, solid Safety Profile, moderate Therapeutic Effectiveness, weak Patient Practicality
+Option 4 has strong Therapeutic Effectiveness, solid Safety Profile, moderate Economic Accessibility, weak Patient Practicality
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Therapeutic Effectiveness (critical), Safety Profile (important), Economic Accessibility (secondary), Patient Practicality (minor)
+Stakeholder 2 priorities: Safety Profile (critical), Patient Practicality (important), Economic Accessibility (secondary), Therapeutic Effectiveness (minor)
+Stakeholder 3 priorities: Therapeutic Effectiveness (critical), Patient Practicality (important), Economic Accessibility (secondary), Safety Profile (minor)
+Stakeholder 4 priorities: Therapeutic Effectiveness (critical), Patient Practicality (important), Economic Accessibility (secondary), Safety Profile (minor)
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,8,emphasis_pos,Positive Emphasis Options,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_sent_pos.yaml,8eb11d04aafb91dabc7212ae7622f9d55bc9d2f846085a31c765b696b9714a8d,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 ensures excellent patient convenience and good safety. However, it delievers limited affordability and provides poor clinical benefit.
+Option 2 ensures excellent safety and good patient convenience. However, it delievers limited affordability and provides poor clinical benefit.
+Option 3 ensures excellent affordability and good safety. However, it delievers limited clinical benefit and provides poor patient convenience.
+Option 4 ensures excellent clinical benefit and good safety. However, it delievers limited affordability and provides poor patient convenience.
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: clinical benefit > safety > affordability > patient convenience
+Stakeholder 2 priorities: safety > patient convenience > affordability > clinical benefit
+Stakeholder 3 priorities: clinical benefit > patient convenience > affordability > safety
+Stakeholder 4 priorities: clinical benefit > patient convenience > affordability > safety
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,9,emphasis_neg,Negative Emphasis Options,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_sent_neg.yaml,57c97d5a6429e5f847b37626ec6d388647b73f9c57e3f5faa07b82577a226180,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 offers only limited affordability and poor clinical benefit. However, it provides excellent patient convenience and provides good safety.
+Option 2 offers only limited affordability and poor clinical benefit. However, it provides excellent safety and provides good patient convenience.
+Option 3 offers only limited clinical benefit and poor patient convenience. However, it provides excellent affordability and provides good safety.
+Option 4 offers only limited affordability and poor patient convenience. However, it provides excellent clinical benefit and provides good safety.
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: clinical benefit > safety > affordability > patient convenience
+Stakeholder 2 priorities: safety > patient convenience > affordability > clinical benefit
+Stakeholder 3 priorities: clinical benefit > patient convenience > affordability > safety
+Stakeholder 4 priorities: clinical benefit > patient convenience > affordability > safety
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,10,stakeholder_roles,Stakeholder with Roles,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_nm_ord_op_ord.yaml,58123a72b66d1aea9100a0370742e83334f97d8a5808dd72757bd7f2f32763bf,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: convenience > safety > affordability > clinical benefit
+Option 2: safety > convenience > affordability > clinical benefit
+Option 3: affordability > safety > clinical benefit > convenience
+Option 4: clinical benefit > safety > affordability > convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Patient priorities: clinical benefit > safety > affordability > convenience
+Physician priorities: safety > convenience > affordability > clinical benefit
+Healthcare Payer priorities: clinical benefit > convenience > affordability > safety
+Hospital priorities: clinical benefit > convenience > affordability > safety
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,11,permulation_options_1,Permutation Options #1,borda,achieves the highest overall preference ranking across stakeholders,3|1|4|2,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,9ec386fbd0afdcae8fc3995f51dae87e92d78de7a52db93d8fc2284487854cae,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Affordability > Safety > Clinical benefit > Patient convenience
+Option 2: Patient convenience > Safety > Affordability > Clinical benefit
+Option 3: Clinical benefit > Safety > Affordability > Patient convenience
+Option 4: Safety > Patient convenience > Affordability > Clinical benefit
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,12,permulation_options_2,Permutation Options #2,borda,achieves the highest overall preference ranking across stakeholders,4|2|1|3,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,639e6a5ea488209e39a8d94f28a2df8d5333a8111ee2f7edf4d43786fb15551f,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Clinical benefit > Safety > Affordability > Patient convenience
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Patient convenience > Safety > Affordability > Clinical benefit
+Option 4: Affordability > Safety > Clinical benefit > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,13,permulation_options_3,Permutation Options #3,borda,achieves the highest overall preference ranking across stakeholders,2|4|3|1,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,360225599af1fa003180b017f9047dedab371e3945712b0014d695d27d324d32,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Safety > Patient convenience > Affordability > Clinical benefit
+Option 2: Clinical benefit > Safety > Affordability > Patient convenience
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Patient convenience > Safety > Affordability > Clinical benefit
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,14,permulation_stakeholders_1,Permutation Stakeholders #1,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,3|1|4|2,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,7919d5e19045039bcb38016b743d87f4275ee46278f3204d542cea03b20aa4ba,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 2 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,15,permulation_stakeholders_2,Permutation Stakeholders #2,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,4|2|1|3,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,1d2e47c684ea6a775e35f39d24070b856704df8f1a67a39aa4c12f208147f661,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 2 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 3 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+Stakeholder 4 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,16,permulation_stakeholders_3,Permutation Stakeholders #3,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,2|4|3|1,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,744bd99214622e1498a0a13025fc187f5b9ebe0ef67bf5f8d0130ea2c38daecd,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Patient convenience > Safety > Affordability > Clinical benefit
+Option 2: Safety > Patient convenience > Affordability > Clinical benefit
+Option 3: Affordability > Safety > Clinical benefit > Patient convenience
+Option 4: Clinical benefit > Safety > Affordability > Patient convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Safety > Patient convenience > Affordability > Clinical benefit
+Stakeholder 2 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 3 priorities: Clinical benefit > Patient convenience > Affordability > Safety
+Stakeholder 4 priorities: Clinical benefit > Safety > Affordability > Patient convenience
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,17,exaggeration,Exaggerated Adjectives,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_adj.yaml,7996ca9205e643bf11acc6ba3d4e94a14c739718e2d49e52534a9b6b6c00f1b0,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 has outstanding convenience, impressive safety, disappointing affordability, very poor clinical benefit
+Option 2 has outstanding safety, impressive convenience, disappointing affordability, very poor clinical benefit
+Option 3 has outstanding affordability, impressive safety, disappointing clinical benefit, very poor convenience
+Option 4 has outstanding clinical benefit, impressive safety, disappointing affordability, very poor convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: clinical benefit > safety > affordability > convenience
+Stakeholder 2 priorities: safety > convenience > affordability > clinical benefit
+Stakeholder 3 priorities: clinical benefit > convenience > affordability > safety
+Stakeholder 4 priorities: clinical benefit > convenience > affordability > safety
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,23,paraphrasing_adj,Paraphrasing Adjective ONLY,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_adj_op_adj.yaml,194f5a44751ad1d522e7547f652808dadb1f9789ffb2a90c80a89e2dca22c683,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 has strong convenience, solid safety, moderate affordability, weak clinical benefit
+Option 2 has strong safety, solid convenience, moderate affordability, weak clinical benefit
+Option 3 has strong affordability, solid safety, moderate clinical benefit, weak convenience
+Option 4 has strong clinical benefit, solid safety, moderate affordability, weak convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: clinical benefit (critical), safety (important), affordability (secondary), convenience (minor)
+Stakeholder 2 priorities: safety (critical), convenience (important), affordability (secondary), clinical benefit (minor)
+Stakeholder 3 priorities: clinical benefit (critical), convenience (important), affordability (secondary), safety (minor)
+Stakeholder 4 priorities: clinical benefit (critical), convenience (important), affordability (secondary), safety (minor)
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,24,stakeholder_roles_alt_01,Stakeholder with Alternative Roles 01,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_nm_ord_op_ord.yaml,3d105a52282b038cab16b006e0edfc5958f46171c140babf6e6d3ed327b13c36,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: convenience > safety > affordability > clinical benefit
+Option 2: safety > convenience > affordability > clinical benefit
+Option 3: affordability > safety > clinical benefit > convenience
+Option 4: clinical benefit > safety > affordability > convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Sick Infant's Family priorities: clinical benefit > safety > affordability > convenience
+Community Health Worker priorities: safety > convenience > affordability > clinical benefit
+Insurance Corporation priorities: clinical benefit > convenience > affordability > safety
+For-profit Hospital Chain priorities: clinical benefit > convenience > affordability > safety
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,31,stakeholder_roles_alt_02,Stakeholder with Alternative Roles 02,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_nm_ord_op_ord.yaml,1bac2313ac1413062783986869020ee0459615d0f6605759b39d1b86c27fa604,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: convenience > safety > affordability > clinical benefit
+Option 2: safety > convenience > affordability > clinical benefit
+Option 3: affordability > safety > clinical benefit > convenience
+Option 4: clinical benefit > safety > affordability > convenience
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Sick Elderly Person priorities: clinical benefit > safety > affordability > convenience
+Junior Health Practiotioner priorities: safety > convenience > affordability > clinical benefit
+Public Insurance System priorities: clinical benefit > convenience > affordability > safety
+Private Clinic priorities: clinical benefit > convenience > affordability > safety
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,33,paraphrasing_synonym_01,Paraphrasing Adjective + Label Synonym 01,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_adj_op_adj.yaml,9938d8c9d640fbe26fd7cc0d09de3be53b1b55fc6b6711a9e7cabbd2deff558f,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the healthcare option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE HEALTHCARE OPTIONS:
+Below are the healthcare options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1 has strong Treatment Tolerability, solid Treatment Safety, moderate Cost Efficiency, weak Clinical Effectiveness
+Option 2 has strong Treatment Safety, solid Treatment Tolerability, moderate Cost Efficiency, weak Clinical Effectiveness
+Option 3 has strong Cost Efficiency, solid Treatment Safety, moderate Clinical Effectiveness, weak Treatment Tolerability
+Option 4 has strong Clinical Effectiveness, solid Treatment Safety, moderate Cost Efficiency, weak Treatment Tolerability
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Clinical Effectiveness (critical), Treatment Safety (important), Cost Efficiency (secondary), Treatment Tolerability (minor)
+Stakeholder 2 priorities: Treatment Safety (critical), Treatment Tolerability (important), Cost Efficiency (secondary), Clinical Effectiveness (minor)
+Stakeholder 3 priorities: Clinical Effectiveness (critical), Treatment Tolerability (important), Cost Efficiency (secondary), Treatment Safety (minor)
+Stakeholder 4 priorities: Clinical Effectiveness (critical), Treatment Tolerability (important), Cost Efficiency (secondary), Treatment Safety (minor)
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,44,abstract_denominations,Abstract Denominations,borda,achieves the highest overall preference ranking across stakeholders,1|2|3|4,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2_neutral_context.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,42205e31185bc3bbcea49307e33e3c486c8c4a200b2212d1f527da1102c38889,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE OPTIONS:
+Below are the options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Criterion δ > Criterion β > Criterion γ > Criterion α
+Option 2: Criterion β > Criterion δ > Criterion γ > Criterion α
+Option 3: Criterion γ > Criterion β > Criterion α > Criterion δ
+Option 4: Criterion α > Criterion β > Criterion γ > Criterion δ
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Criterion α > Criterion β > Criterion γ > Criterion δ
+Stakeholder 2 priorities: Criterion β > Criterion δ > Criterion γ > Criterion α
+Stakeholder 3 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+Stakeholder 4 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,111,abstract_permutation_options_1,Abstract Permutation Options #1,borda,achieves the highest overall preference ranking across stakeholders,3|1|4|2,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2_neutral_context.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,bb8bea447c1a219f97a9c7266ed70588128f047c1cf3119c12f99449bbb52cdf,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE OPTIONS:
+Below are the options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Criterion γ > Criterion β > Criterion α > Criterion δ
+Option 2: Criterion δ > Criterion β > Criterion γ > Criterion α
+Option 3: Criterion α > Criterion β > Criterion γ > Criterion δ
+Option 4: Criterion β > Criterion δ > Criterion γ > Criterion α
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Criterion α > Criterion β > Criterion γ > Criterion δ
+Stakeholder 2 priorities: Criterion β > Criterion δ > Criterion γ > Criterion α
+Stakeholder 3 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+Stakeholder 4 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,112,abstract_permutation_options_2,Abstract Permutation Options #2,borda,achieves the highest overall preference ranking across stakeholders,4|2|1|3,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2_neutral_context.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,a66ad2145c85bd48baad84c4bfcd493e7865dc0d0367a0cd53f023772d1caba6,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE OPTIONS:
+Below are the options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Criterion α > Criterion β > Criterion γ > Criterion δ
+Option 2: Criterion β > Criterion δ > Criterion γ > Criterion α
+Option 3: Criterion δ > Criterion β > Criterion γ > Criterion α
+Option 4: Criterion γ > Criterion β > Criterion α > Criterion δ
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Criterion α > Criterion β > Criterion γ > Criterion δ
+Stakeholder 2 priorities: Criterion β > Criterion δ > Criterion γ > Criterion α
+Stakeholder 3 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+Stakeholder 4 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
+3,r1a1_r2a5_r3a9_r4a15,113,abstract_permutation_options_3,Abstract Permutation Options #3,borda,achieves the highest overall preference ranking across stakeholders,2|4|3|1,1|2|3|4,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/prompt_v2_neutral_context.yaml,/media/alexu/Source Drive/_DEVELOP/simulacao/scripts/benchmark_github/config/rendering/sh_id_ord_op_ord.yaml,2af9153d5bcf95750bfc6b6a68e00959db2db20c3c7c512e3b40b89f272a0858,"You are the neutral decision mediator in a multi-stakeholder governance system.
+
+## TASK:
+Your task is to recommend the option that achieves the highest overall preference ranking across stakeholders.
+
+## AVAILABLE OPTIONS:
+Below are the options available. For each option, factors are ranked by how strongly they are delivered (1st = strongest, 4th = weakest):
+
+Option 1: Criterion β > Criterion δ > Criterion γ > Criterion α
+Option 2: Criterion α > Criterion β > Criterion γ > Criterion δ
+Option 3: Criterion γ > Criterion β > Criterion α > Criterion δ
+Option 4: Criterion δ > Criterion β > Criterion γ > Criterion α
+
+## STAKEHOLDER PREFERENCES:
+The factors the stakeholders care about, from the most important (left) to the least important (right):
+
+Stakeholder 1 priorities: Criterion α > Criterion β > Criterion γ > Criterion δ
+Stakeholder 2 priorities: Criterion β > Criterion δ > Criterion γ > Criterion α
+Stakeholder 3 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+Stakeholder 4 priorities: Criterion α > Criterion δ > Criterion γ > Criterion β
+
+## DECISION PROCESS:
+- Consider each stakeholder's preferences.
+- Select the option that achieves the highest overall preference ranking across stakeholders.
+
+## OUTPUT INSTRUCTIONS:
+YOU MUST RESPOND WITH VALID JSON ONLY. Your entire response must be a single, valid JSON object matching exactly the structure below. Do not include any explanatory text, markdown formatting, or code blocks around the JSON. The response will be parsed programmatically, and any deviation from the exact JSON structure will cause a system failure.
+
+`selected_option_id` MUST be an integer option number from 1 to 4, referring to the anonymized labels ""Option 1""..""Option 4"" shown above.
+
+## OUTPUT FORMAT (STRICT JSON)
+{
+  ""selected_option_id"": ""Exact option NUMBER""
+}
+"
