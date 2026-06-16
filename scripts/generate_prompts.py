@@ -28,6 +28,7 @@ BUNDLE_ROOT = SCRIPT_DIR.parent
 
 
 def _parse_ids(raw: Optional[str]) -> Optional[List[int]]:
+    """Parse an optional comma-separated integer list from the CLI."""
     if not raw:
         return None
     out: List[int] = []
@@ -39,6 +40,7 @@ def _parse_ids(raw: Optional[str]) -> Optional[List[int]]:
 
 
 def main() -> int:
+    """CLI entry point for rendering benchmark prompts from frozen scenarios."""
     parser = argparse.ArgumentParser(description="Render prompts from fixed scenario data and public variant config.")
     parser.add_argument("--scenarios", required=True, help="Scenario bundle JSON/YAML from the published data artifact.")
     parser.add_argument("--variant-map", default=str(BUNDLE_ROOT / "config" / "variant_map.yaml"))

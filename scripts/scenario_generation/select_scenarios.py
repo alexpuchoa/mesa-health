@@ -29,6 +29,7 @@ BUNDLE_ROOT = SCRIPT_DIR.parents[1]
 
 @dataclass(frozen=True)
 class ScenarioFeature:
+    """Minimal scenario feature record used by pool-selection logic."""
     scenario_id: int
     scenario_code: str
     conflict_level: str
@@ -41,6 +42,7 @@ class ScenarioFeature:
 
 
 def _parse_bool(value: Any) -> bool:
+    """Interpret permissive CSV-style truthy strings as booleans."""
     if isinstance(value, bool):
         return value
     raw = str(value or "").strip().lower()
@@ -48,6 +50,7 @@ def _parse_bool(value: Any) -> bool:
 
 
 def _load_features(path: Path) -> List[ScenarioFeature]:
+    """Load scenario-feature CSV rows into typed selection records."""
     rows = read_csv_rows(path)
     out: List[ScenarioFeature] = []
     for row in rows:
@@ -68,6 +71,7 @@ def _load_features(path: Path) -> List[ScenarioFeature]:
 
 
 def _select_core_exact(rows: Sequence[ScenarioFeature], *, size: int, conflict_bins: Dict[str, int]) -> List[ScenarioFeature]:
+    """Solve the exact core-selection problem with conflict and winner-balance quotas."""
     try:
         from pulp import LpBinary, LpMinimize, LpProblem, LpStatusOptimal, LpVariable, PULP_CBC_CMD, lpSum  # type: ignore
     except Exception as exc:
@@ -94,6 +98,7 @@ def _select_core_exact(rows: Sequence[ScenarioFeature], *, size: int, conflict_b
 
 
 def _balanced_take(rows: Sequence[ScenarioFeature], *, size: int) -> List[ScenarioFeature]:
+    """Select a roughly Borda-balanced subset when an exact MILP is unnecessary."""
     buckets: Dict[int, List[ScenarioFeature]] = {1: [], 2: [], 3: [], 4: []}
     for row in sorted(rows, key=lambda item: item.scenario_id):
         buckets[int(row.borda_winner_id)].append(row)
@@ -108,6 +113,7 @@ def _balanced_take(rows: Sequence[ScenarioFeature], *, size: int) -> List[Scenar
 
 
 def _write_selection(path: Path, rows: Sequence[ScenarioFeature], *, selection_name: str) -> None:
+    """Write one selection-set CSV in the public bundle's simple tabular form."""
     out_rows = [
         {
             "selection_name": selection_name,
@@ -122,6 +128,7 @@ def _write_selection(path: Path, rows: Sequence[ScenarioFeature], *, selection_n
 
 
 def main() -> int:
+    """CLI entry point for deriving the benchmark core and secondary pools."""
     parser = argparse.ArgumentParser(description="Select the benchmark core and derived pools from scenario features.")
     parser.add_argument("--scenario-features-csv", required=True)
     parser.add_argument("--design-yaml", default=str(BUNDLE_ROOT / "config" / "test_set_design.yaml"))

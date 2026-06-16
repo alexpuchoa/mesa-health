@@ -20,7 +20,10 @@ from _benchmark_lib.scenario_generation import build_scenarios, load_archetypes,
 
 
 class PublicBundleSmokeTest(unittest.TestCase):
+    """Smoke tests that exercise the published benchmark bundle end to end."""
+
     def _build_one_scenario_bundle(self) -> tuple[Path, Path]:
+        """Create a tiny temporary bundle that still matches the public file layout."""
         dimensions = load_dimensions(BUNDLE_ROOT / "config" / "dimensions.yaml")
         archetypes = load_archetypes(BUNDLE_ROOT / "config" / "archetypes.yaml", dimensions=dimensions)
         options = load_options(BUNDLE_ROOT / "config" / "options.yaml", dimensions=dimensions)
@@ -57,6 +60,7 @@ class PublicBundleSmokeTest(unittest.TestCase):
         return scenario_path, pool_map_path
 
     def test_generate_prompts_baseline_and_named_variant(self) -> None:
+        """Prompt generation should render both baseline and permuted variants coherently."""
         scenario_path, _pool_map_path = self._build_one_scenario_bundle()
         out_csv = scenario_path.parent / "prompts.csv"
         cmd = [
@@ -79,6 +83,7 @@ class PublicBundleSmokeTest(unittest.TestCase):
         self.assertIn("Patient priorities:", named["prompt_text"])
 
     def test_process_runs_maps_permuted_displayed_choice_back_to_canonical(self) -> None:
+        """Run processing should undo displayed-option permutations before scoring."""
         scenario_path, pool_map_path = self._build_one_scenario_bundle()
         scenario = json.loads(scenario_path.read_text(encoding="utf-8"))["scenarios"][0]
         props = scenario_properties(scenario)
@@ -118,6 +123,7 @@ class PublicBundleSmokeTest(unittest.TestCase):
         self.assertIn("warning: model=demo missing required test variant(s) for APDR", result.stderr)
 
     def test_aggregate_metrics_outputs_scenario_and_model_layers(self) -> None:
+        """Aggregation should emit both scenario-modal rows and paper-metric rows."""
         tmpdir = Path(tempfile.mkdtemp(prefix="benchmark_bundle_aggregate_"))
         self.addCleanup(lambda: shutil.rmtree(tmpdir, ignore_errors=True))
         metrics_csv = tmpdir / "metrics.csv"
@@ -202,6 +208,7 @@ class PublicBundleSmokeTest(unittest.TestCase):
         self.assertIn("warning: model=demo missing required test variant(s) for FIR", result.stderr)
 
     def test_optimize_ordinal_ranksum_design_smoke(self) -> None:
+        """The transparency optimizer should produce its expected artifact set."""
         tmpdir = Path(tempfile.mkdtemp(prefix="benchmark_bundle_opt_"))
         self.addCleanup(lambda: shutil.rmtree(tmpdir, ignore_errors=True))
         out_dir = tmpdir / "opt"

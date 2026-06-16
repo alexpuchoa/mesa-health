@@ -18,6 +18,7 @@ from _benchmark_lib.io_utils import read_csv_rows, write_csv
 
 
 def _parse_csv_list(raw: str) -> List[str]:
+    """Parse a non-empty comma-separated CLI list."""
     values = [part.strip() for part in str(raw or "").split(",") if part.strip()]
     if not values:
         raise ValueError("Expected at least one comma-separated value")
@@ -25,10 +26,12 @@ def _parse_csv_list(raw: str) -> List[str]:
 
 
 def _stable_model_offset(model_name: str) -> int:
+    """Derive a deterministic small offset so fake models do not behave identically."""
     return sum(ord(ch) for ch in str(model_name)) % 4
 
 
 def _make_valid_response(selected_option_id: int, *, include_reasoning: bool) -> str:
+    """Build a schema-conforming fake response payload."""
     payload: Dict[str, object] = {"selected_option_id": int(selected_option_id)}
     if include_reasoning:
         payload["reasoning"] = (
@@ -38,6 +41,7 @@ def _make_valid_response(selected_option_id: int, *, include_reasoning: bool) ->
 
 
 def _make_invalid_response(selected_option_id: int) -> str:
+    """Build a deliberately unparsable response for pipeline robustness tests."""
     return (
         "I choose option "
         + str(int(selected_option_id))
@@ -46,6 +50,7 @@ def _make_invalid_response(selected_option_id: int) -> str:
 
 
 def main() -> int:
+    """CLI entry point for creating synthetic response CSVs for smoke testing."""
     parser = argparse.ArgumentParser(description="Generate fake model responses from a prompt CSV.")
     parser.add_argument("--prompts-csv", required=True)
     parser.add_argument("--out-csv", required=True)

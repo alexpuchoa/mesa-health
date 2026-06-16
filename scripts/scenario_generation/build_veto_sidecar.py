@@ -64,6 +64,7 @@ def _normalize_rows(rows: List[Dict[str, str]]) -> List[Dict[str, Any]]:
 
 
 def main() -> int:
+    """CLI entry point for publishing the scenario-specific veto sidecar."""
     parser = argparse.ArgumentParser(
         description="Build the published scenario_vetoes.yaml sidecar from veto_60.csv."
     )

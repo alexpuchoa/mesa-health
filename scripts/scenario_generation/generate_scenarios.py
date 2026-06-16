@@ -23,6 +23,7 @@ BUNDLE_ROOT = SCRIPT_DIR.parents[1]
 
 
 def _parse_formats(raw: str) -> List[str]:
+    """Validate the requested output-format list for scenario generation artifacts."""
     values = [item.strip().lower() for item in raw.split(",") if item.strip()]
     allowed = {"yaml", "json", "csv"}
     unknown = [v for v in values if v not in allowed]
@@ -34,6 +35,7 @@ def _parse_formats(raw: str) -> List[str]:
 
 
 def main() -> int:
+    """CLI entry point for regenerating the transparency-side scenario universe."""
     parser = argparse.ArgumentParser(description="Generate deterministic scenarios and transparency-side feature tables.")
     parser.add_argument("--dimensions", default=str(BUNDLE_ROOT / "config" / "dimensions.yaml"))
     parser.add_argument("--archetypes", default=str(BUNDLE_ROOT / "config" / "archetypes.yaml"))

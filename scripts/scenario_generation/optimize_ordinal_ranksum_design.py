@@ -45,6 +45,7 @@ SCENARIO_ROLE_ARCH_IDX = np.array(list(itertools.product(range(4), repeat=4)), d
 
 @dataclass(frozen=True)
 class InputContent:
+    """Normalized view of the published design inputs consumed by the optimizer."""
     dim_codes: List[str]
     archetypes: List[dict]
     options: List[dict]
@@ -57,11 +58,13 @@ class InputContent:
 
 
 def _load_yaml(path: Path) -> dict:
+    """Load one YAML document from disk without further validation."""
     with path.open("r", encoding="utf-8") as f:
         return yaml.safe_load(f)
 
 
 def _load_inputs(content_dir: Path) -> InputContent:
+    """Load and validate the optimizer's dimensions, archetypes, and options bundle."""
     dimensions_path = content_dir / "dimensions.yaml"
     archetypes_path = content_dir / "archetypes.yaml"
     options_path = content_dir / "options.yaml"
@@ -108,6 +111,7 @@ def _load_inputs(content_dir: Path) -> InputContent:
 
 
 def _weights_row_from_mapping(mapping: Dict[str, float], dim_codes: List[str]) -> np.ndarray:
+    """Convert a dimension-weight mapping into a fixed-order NumPy row."""
     row = np.zeros(len(dim_codes), dtype=float)
     for j, d in enumerate(dim_codes):
         if d not in mapping:
@@ -117,12 +121,14 @@ def _weights_row_from_mapping(mapping: Dict[str, float], dim_codes: List[str]) -
 
 
 def _ordered_dim_indices(row: np.ndarray) -> Tuple[int, ...]:
+    """Recover a stable descending dimension order from a 4-element weight row."""
     if row.shape != (4,):
         raise ValueError("row must be shape (4,)")
     return tuple(int(i) for i in np.argsort(-row, kind="mergesort").tolist())
 
 
 def _perm_to_row(perm: Sequence[int]) -> np.ndarray:
+    """Convert a dimension permutation into the fixed rank-sum weight vector."""
     out = np.zeros(4, dtype=float)
     for rank_pos, dim_idx in enumerate(perm):
         out[int(dim_idx)] = float(RANK_SUM_WEIGHTS[int(rank_pos)])
@@ -135,6 +141,7 @@ def _candidate_to_matrices(
     candidate_arch_perm_idx_by_role: List[List[int]],
     all_perms: List[Tuple[int, ...]],
 ) -> Tuple[np.ndarray, np.ndarray]:
+    """Expand permutation indices into archetype and option weight matrices."""
     options = np.zeros((4, 4), dtype=float)
     for i in range(4):
         options[i, :] = _perm_to_row(all_perms[int(candidate_options_perm_idx[i])])
@@ -148,6 +155,7 @@ def _candidate_to_matrices(
 
 
 def _credit_with_ties(scores_2d: np.ndarray, *, atol: float) -> Tuple[np.ndarray, np.ndarray]:
+    """Assign fractional winner credit when multiple options tie for first place."""
     top = np.max(scores_2d, axis=1, keepdims=True)
     tied = np.isclose(scores_2d, top, atol=atol)
     tie_size = np.sum(tied, axis=1, keepdims=True).astype(float)
@@ -161,6 +169,7 @@ def _evaluate_scenario_set(
     options: np.ndarray,
     atol: float,
 ) -> Dict[str, object]:
+    """Evaluate one candidate design over all 256 induced scenarios."""
     idx = SCENARIO_ROLE_ARCH_IDX
     stakeholder_weights = np.empty((256, 4, 4), dtype=float)
     stakeholder_weights[:, 0, :] = archetypes_by_role[0, idx[:, 0], :]
@@ -235,6 +244,7 @@ def _loss_from_metrics(
     target_diff_rate: float | None,
     diff_weight: float,
 ) -> float:
+    """Score one candidate according to balance, tie, and divergence objectives."""
     borda_wins = np.array(metrics["borda_wins"], dtype=float)
     util_wins = np.array(metrics["util_wins"], dtype=float)
     target = 64.0
@@ -255,6 +265,7 @@ def _check_candidate_constraints(
     require_unique_option_top_dim: bool,
     require_unique_archetypes_within_role: bool,
 ) -> bool:
+    """Check hard uniqueness constraints imposed on sampled optimizer candidates."""
     if len(option_perm_idx) != 4:
         return False
     if len(set(int(x) for x in option_perm_idx)) != 4:
@@ -280,6 +291,7 @@ def _sample_candidate(
     require_unique_option_top_dim: bool,
     require_unique_archetypes_within_role: bool,
 ) -> Tuple[List[int], List[List[int]]]:
+    """Sample a random feasible candidate design under the active hard constraints."""
     n_perms = len(all_perms)
     option_perm_idx: List[int]
     if require_unique_option_top_dim:
@@ -311,6 +323,7 @@ def _mutate_candidate(
     require_unique_archetypes_within_role: bool,
     max_attempts: int = 200,
 ) -> Tuple[List[int], List[List[int]]]:
+    """Propose a nearby feasible candidate by mutating one option or archetype row."""
     n_perms = len(all_perms)
     for _ in range(max_attempts):
         new_options = [int(x) for x in option_perm_idx]
@@ -340,6 +353,7 @@ def _candidate_from_yaml(
     inputs: InputContent,
     all_perms: List[Tuple[int, ...]],
 ) -> Tuple[List[int], List[List[int]]]:
+    """Translate the current published YAML design into optimizer permutation indices."""
     perm_to_idx = {tuple(p): i for i, p in enumerate(all_perms)}
     option_perm_idx: List[int] = []
     for option in inputs.options:
@@ -359,6 +373,7 @@ def _candidate_from_yaml(
 
 
 def _resolve_yaml_out_path(*, source_path: Path, suffix: str, explicit_path: str | None) -> Path:
+    """Resolve optimized YAML output paths, honoring explicit CLI overrides."""
     if explicit_path:
         return Path(explicit_path).resolve()
     return source_path.with_name(f"{source_path.stem}{suffix}{source_path.suffix}").resolve()
@@ -373,6 +388,7 @@ def _write_yaml_from_design(
     out_options_yaml: Path,
     decimals: int,
 ) -> None:
+    """Persist the best design back into archetype and option YAML files."""
     if archetypes_by_role.shape != (4, 4, 4):
         raise ValueError("archetypes_by_role must be (4,4,4)")
     if options.shape != (4, 4):
@@ -409,6 +425,7 @@ def _write_yaml_from_design(
 
 
 def _write_scenario_outcomes(path: Path, rows: List[dict]) -> None:
+    """Write per-scenario optimizer diagnostics to CSV."""
     if not rows:
         raise ValueError("scenario rows empty")
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -420,6 +437,7 @@ def _write_scenario_outcomes(path: Path, rows: List[dict]) -> None:
 
 
 def main() -> int:
+    """CLI entry point for the transparency-only ordinal rank-sum optimizer."""
     parser = argparse.ArgumentParser(description="Transparency-only optimizer for ordinal rank-sum archetype/option design.")
     parser.add_argument("--content-dir", default=str(BUNDLE_ROOT / "config"))
     parser.add_argument("--out-dir", default=str(BUNDLE_ROOT / "results" / "scenario_generation" / "ordinal_ranksum_opt"))
@@ -464,6 +482,7 @@ def main() -> int:
     best_data: Dict[str, object] = {}
 
     def evaluate_candidate(opt_idx: List[int], arch_idx_by_role: List[List[int]]) -> Tuple[float, Dict[str, object]]:
+        """Expand, score, and package one optimizer candidate for local search."""
         archetypes_by_role, options = _candidate_to_matrices(
             candidate_options_perm_idx=opt_idx,
             candidate_arch_perm_idx_by_role=arch_idx_by_role,

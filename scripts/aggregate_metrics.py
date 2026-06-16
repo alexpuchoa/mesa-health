@@ -41,6 +41,7 @@ VETO_POOL_ALIASES = {"veto"}
 
 
 def _to_int(value: Any) -> Optional[int]:
+    """Convert a CSV-ish value to ``int`` while preserving blanks as ``None``."""
     if value is None:
         return None
     text = str(value).strip()
@@ -50,6 +51,7 @@ def _to_int(value: Any) -> Optional[int]:
 
 
 def _to_float(value: Any) -> Optional[float]:
+    """Convert a CSV-ish value to ``float`` while preserving blanks as ``None``."""
     if value is None:
         return None
     text = str(value).strip()
@@ -59,6 +61,7 @@ def _to_float(value: Any) -> Optional[float]:
 
 
 def _mean(values: Sequence[Optional[float]]) -> Optional[float]:
+    """Average non-null numeric values, returning ``None`` when nothing is available."""
     clean = [float(v) for v in values if v is not None]
     if not clean:
         return None
@@ -66,6 +69,7 @@ def _mean(values: Sequence[Optional[float]]) -> Optional[float]:
 
 
 def _modal_int(values: Sequence[Optional[int]]) -> Tuple[Optional[int], Optional[int], Optional[float], Optional[int]]:
+    """Return the smallest modal integer plus tie/support diagnostics."""
     clean = [int(v) for v in values if v is not None]
     if not clean:
         return None, None, None, None
@@ -78,20 +82,24 @@ def _modal_int(values: Sequence[Optional[int]]) -> Tuple[Optional[int], Optional
 
 
 def _parse_pipe_set(value: Any) -> Set[str]:
+    """Split a pipe-delimited pool-membership cell into a normalized set."""
     if value is None:
         return set()
     return {part.strip() for part in str(value).split("|") if part.strip()}
 
 
 def _has_any_pool(row: Dict[str, Any], aliases: Set[str]) -> bool:
+    """Check whether one aggregate row belongs to at least one pool alias."""
     return bool(_parse_pipe_set(row.get("pool_membership")) & set(aliases))
 
 
 def _write(path: Path, rows: List[Dict[str, Any]], fieldnames: Sequence[str]) -> None:
+    """Thin wrapper kept so output writes are centralized and easy to patch."""
     write_csv(path, rows, fieldnames=fieldnames)
 
 
 def _aggregate_scenario_rows(run_rows: Sequence[Dict[str, str]]) -> List[Dict[str, Any]]:
+    """Collapse per-run rows into one modal row per model, scenario, and variant."""
     groups: DefaultDict[Tuple[str, int, int], List[Dict[str, str]]] = defaultdict(list)
     for row in run_rows:
         key = (str(row.get("model_name") or ""), int(row["scenario_id"]), int(row["test_variant_id"]))
@@ -151,6 +159,7 @@ def _aggregate_scenario_rows(run_rows: Sequence[Dict[str, str]]) -> List[Dict[st
 
 
 def _by_model_scenario_variant(rows: Sequence[Dict[str, Any]]) -> Dict[Tuple[str, int, int], Dict[str, Any]]:
+    """Index scenario-modal rows by the key used in paper-metric calculations."""
     return {
         (str(row["model_name"]), int(row["scenario_id"]), int(row["test_variant_id"])): row
         for row in rows
@@ -165,6 +174,7 @@ def _flip_rate_vs_baseline(
     rows_by_key: Dict[Tuple[str, int, int], Dict[str, Any]],
     eligible_scenarios: Sequence[int],
 ) -> Tuple[Optional[float], int]:
+    """Measure how often variant modalities differ from a baseline modality by scenario."""
     flips = 0
     compared = 0
     for scenario_id in sorted({int(x) for x in eligible_scenarios}):
@@ -195,6 +205,7 @@ def _max_pair_flip_rate(
     rows_by_key: Dict[Tuple[str, int, int], Dict[str, Any]],
     eligible_scenarios: Sequence[int],
 ) -> Tuple[Optional[float], int]:
+    """Return the worst baseline-vs-variant flip rate across a comparison family."""
     rates: List[float] = []
     total_compared = 0
     for variant_id in comparison_variant_ids:
@@ -212,6 +223,7 @@ def _max_pair_flip_rate(
 
 
 def _dominant_position(rows: Sequence[Dict[str, Any]], *, failures_only: bool = False) -> Tuple[Optional[int], int]:
+    """Return the most common displayed position and the number of contributing rows."""
     positions: List[int] = []
     for row in rows:
         if failures_only and _to_int(row.get("borda_correct")) != 0:
@@ -228,6 +240,7 @@ def _dominant_position(rows: Sequence[Dict[str, Any]], *, failures_only: bool = 
 
 
 def _compute_model_metrics(aggregate_rows: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Compute the paper-level model metrics from scenario-modal aggregate rows."""
     rows_by_key = _by_model_scenario_variant(aggregate_rows)
     all_models = sorted({str(row["model_name"]) for row in aggregate_rows})
     core_scenarios = sorted({int(row["scenario_id"]) for row in aggregate_rows if _has_any_pool(row, CORE_POOL_ALIASES)})
@@ -244,6 +257,7 @@ def _compute_model_metrics(aggregate_rows: Sequence[Dict[str, Any]]) -> List[Dic
         }
 
         def _rows_for(variant_id: int, scenario_ids: Sequence[int]) -> List[Dict[str, Any]]:
+            """Collect scenario-modal rows for one model restricted to one variant and scenario set."""
             rows = []
             for sid in scenario_ids:
                 row = rows_by_key.get((model_name, int(sid), int(variant_id)))
@@ -359,6 +373,7 @@ def _compute_model_metrics(aggregate_rows: Sequence[Dict[str, Any]]) -> List[Dic
 
 
 def main() -> int:
+    """CLI entry point for generating scenario-modal and per-model metric CSVs."""
     parser = argparse.ArgumentParser(description="Aggregate per-run metrics into scenario-modal and per-model paper metrics.")
     parser.add_argument("--metrics-csv", required=True)
     parser.add_argument("--variant-map", default=str(BUNDLE_ROOT / "config" / "variant_map.yaml"))

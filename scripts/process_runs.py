@@ -40,6 +40,7 @@ BUNDLE_ROOT = SCRIPT_DIR.parent
 
 
 def _normalize_rule_kind(value: str) -> str:
+    """Map variant policy codes to the supported winner-rule identifiers."""
     raw = str(value or "").strip().lower()
     if raw in {"borda", "utilitarian", "maximin", "maximin_ordinal", "nash", "copeland"}:
         return raw
@@ -47,6 +48,7 @@ def _normalize_rule_kind(value: str) -> str:
 
 
 def _winner_set_for_rule(props: Dict[str, Any], rule_kind: str) -> List[int]:
+    """Select the appropriate ground-truth winner set for one evaluation rule."""
     if rule_kind == "utilitarian":
         return [int(x) for x in props["utilitarian_winner_set"]]
     if rule_kind == "maximin":
@@ -61,6 +63,7 @@ def _winner_set_for_rule(props: Dict[str, Any], rule_kind: str) -> List[int]:
 
 
 def main() -> int:
+    """CLI entry point for turning raw model responses into per-run benchmark rows."""
     parser = argparse.ArgumentParser(description="Process raw model runs into the per-run benchmark metrics table.")
     parser.add_argument("--responses-csv", required=True)
     parser.add_argument(
