@@ -9,6 +9,7 @@ from _benchmark_lib.io_utils import load_data, read_csv_rows
 
 
 def load_scenarios(path: Path) -> List[Dict[str, Any]]:
+    """Load the frozen scenario bundle from either a top-level list or ``scenarios`` mapping."""
     payload = load_data(path)
     if isinstance(payload, dict) and isinstance(payload.get("scenarios"), list):
         scenarios = payload["scenarios"]
@@ -25,6 +26,7 @@ def load_scenarios(path: Path) -> List[Dict[str, Any]]:
 
 
 def scenarios_by_id(path: Path) -> Dict[int, Dict[str, Any]]:
+    """Index the published scenarios by ``scenario_id`` and fail on duplicates."""
     rows = load_scenarios(path)
     out: Dict[int, Dict[str, Any]] = {}
     for row in rows:
@@ -36,6 +38,7 @@ def scenarios_by_id(path: Path) -> Dict[int, Dict[str, Any]]:
 
 
 def load_selection_set_ids(path: Path) -> List[int]:
+    """Read a one-column-or-more selection-set CSV and extract ``scenario_id`` values."""
     rows = read_csv_rows(path)
     out: List[int] = []
     for row in rows:
@@ -46,6 +49,7 @@ def load_selection_set_ids(path: Path) -> List[int]:
 
 
 def load_pool_memberships(map_yaml: Path) -> Dict[str, List[int]]:
+    """Resolve the published pool map into explicit scenario-id memberships per pool."""
     doc = yaml.safe_load(map_yaml.read_text(encoding="utf-8")) or {}
     pools = doc.get("pools")
     if not isinstance(pools, dict):
@@ -67,6 +71,7 @@ def load_pool_memberships(map_yaml: Path) -> Dict[str, List[int]]:
 
 
 def scenario_pool_memberships(scenario_id: int, pool_memberships: Dict[str, List[int]]) -> List[str]:
+    """Return the sorted list of published pool names containing one scenario."""
     sid = int(scenario_id)
     return sorted(pool_name for pool_name, scenario_ids in pool_memberships.items() if sid in {int(x) for x in scenario_ids})
 
@@ -122,6 +127,7 @@ def filter_scenarios(
     *,
     scenario_ids: Optional[Iterable[int]] = None,
 ) -> List[Dict[str, Any]]:
+    """Apply an optional ``scenario_id`` filter while preserving row structure."""
     if scenario_ids is None:
         return [dict(s) for s in scenarios]
     wanted = {int(x) for x in scenario_ids}

@@ -10,6 +10,7 @@ from _benchmark_lib.metrics import sorted_dimension_codes
 
 
 def _load_yaml(path: Path) -> Dict[str, Any]:
+    """Load a YAML document and require it to be a mapping."""
     doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
     if not isinstance(doc, dict):
         raise ValueError(f"Expected mapping YAML at {path}")
@@ -17,6 +18,7 @@ def _load_yaml(path: Path) -> Dict[str, Any]:
 
 
 def load_variant_map(path: Path) -> Dict[str, Any]:
+    """Load the public variant map and verify its top-level shape."""
     doc = _load_yaml(path)
     if not isinstance(doc.get("variants"), list):
         raise ValueError(f"variant_map must define a variants list: {path}")
@@ -24,6 +26,7 @@ def load_variant_map(path: Path) -> Dict[str, Any]:
 
 
 def variants_by_id(doc: Dict[str, Any]) -> Dict[int, Dict[str, Any]]:
+    """Index variant-map rows by ``test_variant_id`` for fast lookup."""
     out: Dict[int, Dict[str, Any]] = {}
     for item in doc.get("variants", []):
         row = dict(item)
@@ -32,6 +35,7 @@ def variants_by_id(doc: Dict[str, Any]) -> Dict[int, Dict[str, Any]]:
 
 
 def load_task_directives(path: Path) -> Dict[str, Dict[str, str]]:
+    """Load task-directive text keyed by policy code and variant code."""
     doc = _load_yaml(path)
     task_directives = doc.get("task_directives")
     if not isinstance(task_directives, dict):
@@ -45,6 +49,7 @@ def load_task_directives(path: Path) -> Dict[str, Dict[str, str]]:
 
 
 def load_dimension_catalog(path: Path) -> Tuple[List[Dict[str, Any]], Dict[str, Dict[str, Any]], Dict[int, str]]:
+    """Load dimensions in ordered, code-indexed, and id-indexed forms."""
     doc = _load_yaml(path)
     rows = doc.get("dimensions")
     if not isinstance(rows, list):
@@ -63,6 +68,7 @@ def load_dimension_catalog(path: Path) -> Tuple[List[Dict[str, Any]], Dict[str, 
 
 
 def load_role_catalog(path: Path) -> Dict[int, Dict[str, Any]]:
+    """Load stakeholder role metadata keyed by ``role_id``."""
     doc = _load_yaml(path)
     rows = doc.get("stakeholder_roles")
     if not isinstance(rows, list):
@@ -74,11 +80,13 @@ def load_role_catalog(path: Path) -> Dict[int, Dict[str, Any]]:
 
 
 def _resolve_relative(base_dir: Path, raw_path: str) -> Path:
+    """Resolve config-relative paths while preserving already-absolute paths."""
     p = Path(str(raw_path))
     return p if p.is_absolute() else (base_dir / p)
 
 
 def _format_prefix(template: str, *, index: int, role_name: str) -> str:
+    """Render line-prefix templates used by prompt block configs."""
     return str(template).format(index=int(index), role_name=str(role_name))
 
 
@@ -89,6 +97,7 @@ def _dimension_label(
     dim_meta: Dict[str, Dict[str, Any]],
     variant_code: str,
 ) -> str:
+    """Return the dimension label after applying render-level and metadata overrides."""
     base = str(render_labels.get(dim_code) or dim_meta[dim_code].get("name") or dim_code)
     if variant_code and variant_code != "default":
         override = ((dim_meta[dim_code].get("label_variants") or {}).get(variant_code))
@@ -98,6 +107,7 @@ def _dimension_label(
 
 
 def _level_map(weight_map: Dict[str, Any]) -> Dict[str, int]:
+    """Translate ordered weights into ordinal levels 4..1 for adjective lookup."""
     ordered = sorted(((str(k), float(v)) for k, v in weight_map.items()), key=lambda item: (-item[1], item[0]))
     return {dim_code: 4 - idx for idx, (dim_code, _w) in enumerate(ordered)}
 
@@ -110,6 +120,7 @@ def _adjective(
     scale_variant: str,
     target: str,
 ) -> str:
+    """Resolve one scale adjective for a dimension, level, and prompt target."""
     key = "scale_adjectives_options" if target == "option" else "scale_adjectives_preferences"
     variants = dim_meta[dim_code].get(key) or {}
     variant_map = variants.get(scale_variant) or variants.get("default") or {}
@@ -131,6 +142,7 @@ def _render_weight_items(
     adjective_format: str,
     include_scale_adjectives: bool,
 ) -> List[str]:
+    """Render one ordered list of dimension mentions for a stakeholder or option row."""
     levels = _level_map(weight_map)
     out: List[str] = []
     for dim_code in ordered_dims:
@@ -165,6 +177,7 @@ def _render_block(
     scale_variant: str,
     role_names: Optional[Sequence[str]] = None,
 ) -> str:
+    """Render one prompt block according to the selected block style configuration."""
     style = str(block_cfg.get("style") or "order")
     line_prefix = str(block_cfg.get("line_prefix") or "")
     separator = str(block_cfg.get("order_separator") or " > ")
@@ -226,6 +239,7 @@ def _render_veto_block(
     render_labels: Dict[str, str],
     label_variant: str,
 ) -> str:
+    """Render the stakeholder-veto section, including empty-placeholder behavior."""
     style = str(block_cfg.get("style") or "none_literal")
     none_literal = str(block_cfg.get("none_literal") or "None")
     if style == "none_literal":
@@ -252,6 +266,7 @@ def _render_veto_block(
 
 
 def resolve_variant_orders(variant_map: Dict[str, Any], variant: Dict[str, Any]) -> Tuple[List[int], List[int]]:
+    """Resolve stakeholder and option display orders for one benchmark variant."""
     defaults = variant_map.get("defaults") or {}
     base_stakeholders = [int(item["role_id"]) for item in defaults.get("prompt_stakeholder_order", [])]
     base_options = [int(item["option_id"]) for item in defaults.get("prompt_option_order", [])]
@@ -281,6 +296,7 @@ def render_prompt_for_scenario(
     role_catalog: Dict[int, Dict[str, Any]],
     vetoes_by_scenario: Optional[Dict[int, Dict[str, int]]] = None,
 ) -> Dict[str, Any]:
+    """Render one full public prompt and expose the metadata needed downstream."""
     prompt_path = _resolve_relative(config_dir, str(variant["prompt_yaml"]))
     render_config_path = _resolve_relative(config_dir, str(variant["render_config_yaml"]))
     prompt_doc = _load_yaml(prompt_path)

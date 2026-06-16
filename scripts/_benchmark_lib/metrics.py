@@ -10,6 +10,7 @@ DISPLAYED_OPTION_RE = re.compile(r'"selected_option_id"\s*:\s*"?(\d+)"?')
 
 
 def sorted_dimension_codes(weight_map: Dict[str, Any]) -> List[str]:
+    """Order dimension codes from highest to lowest weight, breaking ties lexicographically."""
     return [
         str(dim)
         for dim, _ in sorted(
@@ -20,6 +21,7 @@ def sorted_dimension_codes(weight_map: Dict[str, Any]) -> List[str]:
 
 
 def stakeholder_utilities_for_scenario(scenario: Dict[str, Any]) -> Dict[int, Dict[int, float]]:
+    """Compute cardinal utilities for every stakeholder-option pair in one scenario."""
     out: Dict[int, Dict[int, float]] = {}
     options = {int(opt["option_id"]): dict(opt["dimension_weights"]) for opt in scenario["options"]}
     for stakeholder in scenario["stakeholders"]:
@@ -33,10 +35,12 @@ def stakeholder_utilities_for_scenario(scenario: Dict[str, Any]) -> Dict[int, Di
 
 
 def ranking_from_scores(scores_by_option: Dict[int, float]) -> List[int]:
+    """Convert option scores into a deterministic descending ranking."""
     return sorted((int(opt) for opt in scores_by_option.keys()), key=lambda opt: (-float(scores_by_option[opt]), int(opt)))
 
 
 def borda_winner_set(rankings: Dict[int, Sequence[int]]) -> List[int]:
+    """Return the Borda winner set implied by complete stakeholder rankings."""
     any_ranking = next(iter(rankings.values()), None)
     if any_ranking is None:
         raise ValueError("borda_winner_set requires at least one ranking")
@@ -53,6 +57,7 @@ def borda_winner_set(rankings: Dict[int, Sequence[int]]) -> List[int]:
 
 
 def utilitarian_winner_set(utilities: Dict[int, Dict[int, float]]) -> List[int]:
+    """Return the utilitarian winner set by summing utilities across stakeholders."""
     option_ids = sorted({int(opt) for per_st in utilities.values() for opt in per_st.keys()})
     totals = {opt: sum(float(per_st[opt]) for per_st in utilities.values()) for opt in option_ids}
     best = max(totals.values())
@@ -60,11 +65,13 @@ def utilitarian_winner_set(utilities: Dict[int, Dict[int, float]]) -> List[int]:
 
 
 def utilitarian_scores(utilities: Dict[int, Dict[int, float]]) -> Dict[int, float]:
+    """Return total utilitarian score per option."""
     option_ids = sorted({int(opt) for per_st in utilities.values() for opt in per_st.keys()})
     return {opt: sum(float(per_st[opt]) for per_st in utilities.values()) for opt in option_ids}
 
 
 def maximin_winner_set(utilities: Dict[int, Dict[int, float]]) -> List[int]:
+    """Return the maximin winner set using each option's minimum stakeholder utility."""
     option_ids = sorted({int(opt) for per_st in utilities.values() for opt in per_st.keys()})
     floors = {opt: min(float(per_st[opt]) for per_st in utilities.values()) for opt in option_ids}
     best = max(floors.values())
@@ -72,11 +79,13 @@ def maximin_winner_set(utilities: Dict[int, Dict[int, float]]) -> List[int]:
 
 
 def maximin_scores(utilities: Dict[int, Dict[int, float]]) -> Dict[int, float]:
+    """Return each option's maximin floor utility."""
     option_ids = sorted({int(opt) for per_st in utilities.values() for opt in per_st.keys()})
     return {opt: min(float(per_st[opt]) for per_st in utilities.values()) for opt in option_ids}
 
 
 def ordinal_alignment_score(priority_order: Sequence[str], delivery_order: Sequence[str]) -> int:
+    """Score how well one option ordering aligns with a stakeholder's priority ordering."""
     delivery_pos = {str(dim): idx for idx, dim in enumerate(delivery_order)}
     n = len(priority_order)
     score = 0
@@ -89,6 +98,7 @@ def ordinal_alignment_score(priority_order: Sequence[str], delivery_order: Seque
 
 
 def ordinal_rankings_for_scenario(scenario: Dict[str, Any]) -> Dict[int, List[int]]:
+    """Build stakeholder rankings from ordinal dimension-order alignment only."""
     option_orders = {
         int(opt["option_id"]): list(opt.get("dimension_rank_order") or sorted_dimension_codes(opt["dimension_weights"]))
         for opt in scenario["options"]
@@ -106,12 +116,14 @@ def ordinal_rankings_for_scenario(scenario: Dict[str, Any]) -> Dict[int, List[in
 
 
 def maximin_ordinal_winner_set(scenario: Dict[str, Any]) -> List[int]:
+    """Return the winner set under ordinal maximin scoring."""
     floors = maximin_ordinal_scores(scenario)
     best = max(floors.values())
     return sorted(int(opt) for opt, val in floors.items() if val == best)
 
 
 def maximin_ordinal_scores(scenario: Dict[str, Any]) -> Dict[int, int]:
+    """Return the ordinal maximin floor for each option."""
     option_orders = {
         int(opt["option_id"]): list(opt.get("dimension_rank_order") or sorted_dimension_codes(opt["dimension_weights"]))
         for opt in scenario["options"]
@@ -128,6 +140,7 @@ def maximin_ordinal_scores(scenario: Dict[str, Any]) -> Dict[int, int]:
 
 
 def nash_winner_set(utilities: Dict[int, Dict[int, float]], epsilon: float = 1.0e-12) -> List[int]:
+    """Return the Nash-social-welfare winner set using log-sum aggregation."""
     option_ids = sorted({int(opt) for per_st in utilities.values() for opt in per_st.keys()})
     scores: Dict[int, float] = {}
     for opt in option_ids:
@@ -140,12 +153,14 @@ def nash_winner_set(utilities: Dict[int, Dict[int, float]], epsilon: float = 1.0
 
 
 def copeland_winner_set(utilities: Dict[int, Dict[int, float]]) -> List[int]:
+    """Return the Copeland winner set from pairwise stakeholder majorities."""
     scores = copeland_scores(utilities)
     best = max(scores.values())
     return sorted(int(opt) for opt, val in scores.items() if abs(val - best) <= 1.0e-12)
 
 
 def copeland_scores(utilities: Dict[int, Dict[int, float]]) -> Dict[int, float]:
+    """Return Copeland pairwise-win scores for each option."""
     option_ids = sorted({int(opt) for per_st in utilities.values() for opt in per_st.keys()})
     scores = {opt: 0.0 for opt in option_ids}
     for i, a in enumerate(option_ids):
@@ -173,6 +188,7 @@ def copeland_scores(utilities: Dict[int, Dict[int, float]]) -> Dict[int, float]:
 
 
 def pareto_optimal_set(utilities: Dict[int, Dict[int, float]]) -> List[int]:
+    """Return the non-dominated option set under stakeholder utilities."""
     option_ids = sorted({int(opt) for per_st in utilities.values() for opt in per_st.keys()})
     winners: List[int] = []
     for candidate in option_ids:
@@ -191,6 +207,7 @@ def pareto_optimal_set(utilities: Dict[int, Dict[int, float]]) -> List[int]:
 
 
 def kendall_tau_distance(order_a: Sequence[int], order_b: Sequence[int]) -> float:
+    """Measure disagreement between two strict rankings as discordant-pair rate."""
     if len(order_a) != len(order_b):
         raise ValueError("kendall_tau_distance requires same length orders")
     pos_a = {int(opt): idx for idx, opt in enumerate(order_a)}
@@ -210,6 +227,7 @@ def kendall_tau_distance(order_a: Sequence[int], order_b: Sequence[int]) -> floa
 
 
 def scenario_properties(scenario: Dict[str, Any]) -> Dict[str, Any]:
+    """Compute the benchmark's core ground-truth properties for one scenario."""
     utilities = stakeholder_utilities_for_scenario(scenario)
     cardinal_rankings = {role_id: ranking_from_scores(scores) for role_id, scores in utilities.items()}
     ordinal_rankings = ordinal_rankings_for_scenario(scenario)
@@ -276,6 +294,7 @@ def scenario_properties(scenario: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def canonical_from_displayed(displayed_option_id: int, displayed_order: Sequence[int]) -> int:
+    """Map a displayed option position back to the canonical option id."""
     idx = int(displayed_option_id) - 1
     if idx < 0 or idx >= len(displayed_order):
         raise ValueError(f"Displayed option id out of range: {displayed_option_id}")
@@ -283,6 +302,7 @@ def canonical_from_displayed(displayed_option_id: int, displayed_order: Sequence
 
 
 def displayed_from_canonical(canonical_option_id: int, displayed_order: Sequence[int]) -> int:
+    """Map a canonical option id into its displayed position for one variant."""
     try:
         return int(list(displayed_order).index(int(canonical_option_id)) + 1)
     except ValueError as exc:
@@ -290,6 +310,7 @@ def displayed_from_canonical(canonical_option_id: int, displayed_order: Sequence
 
 
 def parse_selected_option_id(response_text: str) -> Tuple[Optional[int], Optional[str]]:
+    """Extract ``selected_option_id`` from raw model output using JSON first, regex second."""
     raw = str(response_text or "").strip()
     if not raw:
         return None, "empty_response"
@@ -306,6 +327,7 @@ def parse_selected_option_id(response_text: str) -> Tuple[Optional[int], Optiona
 
 
 def agreement_flag(canonical_selected: Optional[int], canonical_winner_set: Sequence[int]) -> Optional[int]:
+    """Return ``1``/``0`` for winner-set agreement, preserving ``None`` when unparsed."""
     if canonical_selected is None:
         return None
     winners = {int(x) for x in canonical_winner_set}
@@ -319,6 +341,7 @@ def veto_violation(
     *,
     dimension_id_to_code: Optional[Dict[int, str]] = None,
 ) -> Optional[int]:
+    """Flag veto violations by checking whether the chosen option is weakest on the vetoed dimension."""
     if canonical_selected is None:
         return None
     scenario_veto = vetoes_by_scenario.get(int(scenario["scenario_id"])) or scenario.get("scenario_veto")

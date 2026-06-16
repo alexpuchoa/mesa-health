@@ -11,6 +11,7 @@ from _benchmark_lib.io_utils import load_data
 
 @dataclass(frozen=True)
 class Archetype:
+    """Fixed stakeholder preference profile used to build the scenario universe."""
     archetype_id: int
     role_id: int
     code: str
@@ -20,6 +21,7 @@ class Archetype:
 
 @dataclass(frozen=True)
 class Option:
+    """Fixed healthcare option profile used across every generated scenario."""
     option_id: int
     code: str
     title: str
@@ -27,6 +29,7 @@ class Option:
 
 
 def _extract_records(payload: Any, *, key: str) -> List[Dict[str, Any]]:
+    """Accept either a plain list or a mapping containing the requested record list."""
     if isinstance(payload, dict):
         value = payload.get(key)
         if not isinstance(value, list):
@@ -38,6 +41,7 @@ def _extract_records(payload: Any, *, key: str) -> List[Dict[str, Any]]:
 
 
 def _extract_weight_map_from_row(row: Dict[str, Any], *, dims: List[str]) -> Dict[str, Any]:
+    """Resolve dimension weights from the supported input row encodings."""
     if "dimension_weights" in row and isinstance(row["dimension_weights"], dict):
         return dict(row["dimension_weights"])
     if "dimension_weights" in row and isinstance(row["dimension_weights"], str):
@@ -58,6 +62,7 @@ def _extract_weight_map_from_row(row: Dict[str, Any], *, dims: List[str]) -> Dic
 
 
 def _normalize_weights(raw: Dict[str, Any], *, dims: List[str]) -> Dict[str, float]:
+    """Coerce dimension weights to floats and enforce a probability-simplex row."""
     out: Dict[str, float] = {}
     for dim in dims:
         if dim not in raw:
@@ -70,6 +75,7 @@ def _normalize_weights(raw: Dict[str, Any], *, dims: List[str]) -> Dict[str, flo
 
 
 def load_dimensions(dimensions_path: Path) -> List[str]:
+    """Load the benchmark's four canonical dimension codes."""
     payload = load_data(dimensions_path)
     if isinstance(payload, list):
         codes = [str(item["code"]) for item in payload]
@@ -86,6 +92,7 @@ def load_dimensions(dimensions_path: Path) -> List[str]:
 
 
 def load_archetypes(archetypes_path: Path, *, dimensions: List[str]) -> List[Archetype]:
+    """Load and normalize the 16 published archetypes."""
     payload = load_data(archetypes_path)
     rows = _extract_records(payload, key="archetypes")
     return [
@@ -101,6 +108,7 @@ def load_archetypes(archetypes_path: Path, *, dimensions: List[str]) -> List[Arc
 
 
 def load_options(options_path: Path, *, dimensions: List[str]) -> List[Option]:
+    """Load and normalize the four published option profiles."""
     payload = load_data(options_path)
     rows = _extract_records(payload, key="options")
     return [
@@ -115,10 +123,12 @@ def load_options(options_path: Path, *, dimensions: List[str]) -> List[Option]:
 
 
 def rank_dimensions(weights: Dict[str, float]) -> List[str]:
+    """Convert a weight vector into a deterministic descending dimension order."""
     return [d for d, _ in sorted(weights.items(), key=lambda kv: (-kv[1], kv[0]))]
 
 
 def utility(arch_w: Dict[str, float], opt_w: Dict[str, float], dims: List[str]) -> float:
+    """Compute one stakeholder-option utility as a weighted dot product."""
     return sum(float(arch_w[d]) * float(opt_w[d]) for d in dims)
 
 
@@ -129,6 +139,7 @@ def build_scenarios(
     dimensions: List[str],
     scenario_id_start: int = 1,
 ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]], List[Dict[str, Any]], List[Dict[str, Any]]]:
+    """Enumerate the full scenario grid plus long-form utility and ranking tables."""
     role_to_arch: Dict[int, List[Archetype]] = {}
     for a in archetypes:
         role_to_arch.setdefault(a.role_id, []).append(a)

@@ -30,12 +30,14 @@ METRIC_REQUIRED_VARIANTS: Dict[str, Sequence[int]] = {
 
 
 def missing_required_variants(present_variant_ids: Iterable[int], metric_name: str) -> List[int]:
+    """Return the required published test variants that are absent for one metric."""
     present = {int(x) for x in present_variant_ids}
     required = METRIC_REQUIRED_VARIANTS[metric_name]
     return [int(variant_id) for variant_id in required if int(variant_id) not in present]
 
 
 def metric_warning_lines(*, subject_label: str, present_variant_ids: Iterable[int]) -> List[str]:
+    """Build human-readable warnings for every paper metric that cannot be computed."""
     lines: List[str] = []
     present: Set[int] = {int(x) for x in present_variant_ids}
     for metric_name in (
