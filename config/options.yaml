@@ -45,7 +45,7 @@ options:
 - option_id: 4
   code: o4
   title: O4
-  option_text: clinical_benefit: 0.4
+  option_text: 'clinical_benefit: 0.4
     safety: 0.3
     affordability: 0.2
     convenience: 0.1'
